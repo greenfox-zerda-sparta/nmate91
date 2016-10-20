@@ -1,44 +1,19 @@
 body {
-  margin: 10px;
+    margin: 30px;
 }
 
-  .box2 {
-  padding-left: 10px;
-  border: 10px;
-  border-style: solid;
-  border-width: thin;
-  margin: 10px;
-  width: 250px;
-  height: 330 px;
+.box2 {
+    font-size: 18px;
+    padding-left: 30px;
+    border: 30px;
+    border-style: none;
+    border-left-style: solid;
+    border-width: medium;
+    margin: 30px;
+    width: 500px;
+    height: 330 px;
 }
 
 h1 {
-  padding-left: 30px;
-  color: blue;
-}
-
-h2 {
-  padding-left: 30px;
-  color: rgb(251, 166, 0);;
-}
-
-p {
-  padding-left: 30px;
-}
-pre {
-  padding-left: 60px;
-}
-
-.big {
-  padding-left: 60px;
-  color: blue;
-}
-
-.little {
-  padding-left: 30px;
-  color: black;
-}
-
-#alma {
-  color: rgb(249, 1, 27);;
+    padding-left: 30px;
 }
