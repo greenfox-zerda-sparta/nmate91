@@ -1,0 +1,18 @@
+body {
+  margin: 20px;
+  margin-left: 30px;
+}
+
+.box {
+  margin: 10px;
+  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  border: 1px solid #000;
+  border-width: thick;
+  width: 200px;
+  height: 30px;
+  color: red;
+  background-color: yellow;
+  font-size: 30px
+}
