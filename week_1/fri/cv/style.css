@@ -8,16 +8,13 @@ img {
     margin-left: -5%;
 }
 
-.head {
-  width: 90%;
-  margin-left: 5%;
-}
-
 article {
     max-width: 800px;
     margin-top: auto;
     margin-right: auto;
     margin-left: auto;
+    font-family: 'Josefin Sans', sans-serif;
+
 }
 
 h1,
@@ -39,17 +36,18 @@ h2 {
 
 h4,
 h5 {
-  margin: 0;
+    margin: 0;
 }
+
 h4 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 h5 {
-  font-style: italic;
-  font-weight: normal;
+    font-style: italic;
+    font-weight: normal;
 }
 
 p,
@@ -61,12 +59,17 @@ ul {
 }
 
 hr {
-  height: 5px;
-  background-color: #222;
+    height: 5px;
+    background-color: #222;
 }
 
 .listsmall {
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-style: italic;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.head {
+    width: 90%;
+    margin-left: 5%;
 }
