@@ -4,10 +4,9 @@
 using namespace std;
 
 int main() {
-	int g1 = 123;
-	int g2 = 345;
-	bool g3;
-	g3 = g1 ?: g2;
-	cout << g3;
+	string n = "The result is: ";
+	string a = "55";
+	string b = "kg";
+	cout << n + a + b;
 	return 0;
 }
