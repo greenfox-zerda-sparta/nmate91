@@ -3,14 +3,15 @@ using namespace std;
 
 void sortAscending(int *array, int length){
   for (int i = 0; i <= length; i++) {
-    for (int j = i + 1; j < length; j++)
+    for (int j = i + 1; j < length; j++) {
       if (array [i] > array [j]) {
         int temp = array [j];
           array [j] = array [i];
           array [i] = temp;
         }
+      }
     }
-}
+  }
 // Implement this function to sort the array in an ascending order.
 
 void sortDescending(int *array, int length) {
