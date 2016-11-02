@@ -22,7 +22,7 @@ int* resize(int* array, int size, int new_size){
   for (int i = 0; i < new_size; i++){
     cout << new_array[i] << " ";
   }
-  delete array;
+  delete[] array;
   array = NULL;
   return new_array;
 }
@@ -36,5 +36,7 @@ int main() {
   cout << "Please, give me the new size!" << endl;
   cin >> new_size;
   resize(arr, 5, new_size);
+  delete[] arr;
+  arr = NULL;
   return 0;
 }
