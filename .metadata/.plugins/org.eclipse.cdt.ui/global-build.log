@@ -1,0 +1,267 @@
+12:14:53 **** Rebuild of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+Info: Nothing to build for helloworld
+Info: Nothing to build for helloworld
+10:45:09 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+10:47:26 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+Info: Nothing to build for helloworld
+10:50:38 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+11:13:40 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+..\src\helloworld.cpp: In function 'int main()':
+..\src\helloworld.cpp:10:32: error: 'end1' was not declared in this scope
+  cout << "the sum is"<< sum << end1;
+                                ^~~~
+11:13:45 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+..\src\helloworld.cpp: In function 'int main()':
+..\src\helloworld.cpp:10:32: error: 'end1' was not declared in this scope
+  cout << "the sum is"<< sum << end1;
+                                ^~~~
+11:14:30 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+..\src\helloworld.cpp: In function 'int main()':
+..\src\helloworld.cpp:10:32: error: 'end1' was not declared in this scope
+  cout << "the sum is"<< sum << end1;
+                                ^~~~
+11:15:03 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+..\src\helloworld.cpp: In function 'int main()':
+..\src\helloworld.cpp:10:29: error: expected primary-expression before ';' token
+  cout << "the sum is"<<sum<<;
+                             ^
+11:16:09 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+..\src\helloworld.cpp: In function 'int main()':
+..\src\helloworld.cpp:10:29: error: expected primary-expression before ';' token
+  cout << "the sum is"<<sum<<;
+                             ^
+11:18:36 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+..\src\helloworld.cpp: In function 'int main()':
+..\src\helloworld.cpp:9:32: error: expected primary-expression before ';' token
+  cout << "the sum is" << sum <<;
+                                ^
+11:22:33 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+11:22:52 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+11:23:03 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+Info: Nothing to build for helloworld
+11:29:00 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+11:29:20 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+11:31:29 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+11:32:10 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+11:32:30 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+11:41:25 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+11:58:35 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+..\src\helloworld.cpp: In function 'int main()':
+..\src\helloworld.cpp:11:59: warning: 'isit' is used uninitialized in this function [-Wuninitialized]
+  cout << age << endl << average << endl << sex << endl << isit;
+                                                           ^~~~
+..\src\helloworld.cpp:11:44: warning: 'sex' is used uninitialized in this function [-Wuninitialized]
+  cout << age << endl << average << endl << sex << endl << isit;
+                                            ^~~
+..\src\helloworld.cpp:11:10: warning: 'age' is used uninitialized in this function [-Wuninitialized]
+  cout << age << endl << average << endl << sex << endl << isit;
+          ^~~
+..\src\helloworld.cpp:11:25: warning: 'average' is used uninitialized in this function [-Wuninitialized]
+  cout << age << endl << average << endl << sex << endl << isit;
+                         ^~~~~~~
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+12:00:08 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+12:33:37 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+12:34:44 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+..\src\helloworld.cpp: In function 'int main()':
+..\src\helloworld.cpp:8:2: error: expected ';' before 'cin'
+  cin >> age;
+  ^~~
+12:34:47 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+..\src\helloworld.cpp: In function 'int main()':
+..\src\helloworld.cpp:8:2: error: expected ';' before 'cin'
+  cin >> age;
+  ^~~
+12:35:04 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+14:18:21 **** Rebuild of configuration Debug for project 09 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\09.o" "..\\src\\09.cpp" 
+g++ -o 09.exe "src\\09.o" 
+Info: Nothing to build for helloworld
+14:18:33 **** Incremental Build of configuration Debug for project 09 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\09.o" "..\\src\\09.cpp" 
+g++ -o 09.exe "src\\09.o" 
+14:19:12 **** Incremental Build of configuration Debug for project 09 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\09.o" "..\\src\\09.cpp" 
+g++ -o 09.exe "src\\09.o" 
+Command canceled
+14:19:21 **** Rebuild of configuration Debug for project 09 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\09.o" "..\\src\\09.cpp" 
+g++ -o 09.exe "src\\09.o" 
+Info: Nothing to build for helloworld
+14:19:29 **** Incremental Build of configuration Debug for project 09 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\09.o" "..\\src\\09.cpp" 
+g++ -o 09.exe "src\\09.o" 
+20:26:29 **** Incremental Build of configuration Debug for project 09 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\09.o" "..\\src\\09.cpp" 
+g++ -o 09.exe "src\\09.o" 
+Info: Nothing to build for helloworld
+20:28:04 **** Incremental Build of configuration Debug for project 09 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\09.o" "..\\src\\09.cpp" 
+g++ -o 09.exe "src\\09.o" 
+Info: Nothing to build for helloworld
+Info: Nothing to build for 09
+20:28:37 **** Incremental Build of configuration Debug for project 09 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\09.o" "..\\src\\09.cpp" 
+g++ -o 09.exe "src\\09.o" 
+Info: Nothing to build for helloworld
+Info: Nothing to build for 09
+20:32:35 **** Incremental Build of configuration Debug for project 09 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\09.o" "..\\src\\09.cpp" 
+g++ -o 09.exe "src\\09.o" 
+Info: Nothing to build for helloworld
+Info: Nothing to build for 09
+00:21:01 **** Incremental Build of configuration Debug for project 09 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\09.o" "..\\src\\09.cpp" 
+g++ -o 09.exe "src\\09.o" 
+Info: Nothing to build for helloworld
+Info: Nothing to build for helloworld
+Info: Nothing to build for 09
+Info: Nothing to build for helloworld
+Info: Nothing to build for helloworld
+Info: Nothing to build for helloworld
+Info: Nothing to build for helloworld
+Info: Nothing to build for helloworld
+Info: Nothing to build for 09
+11:14:49 **** Incremental Build of configuration Debug for project helloworld ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\helloworld.o" "..\\src\\helloworld.cpp" 
+g++ -o helloworld.exe "src\\helloworld.o" 
+Info: Nothing to build for helloworld
+11:31:56 **** Rebuild of configuration Debug for project 01 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\01.o" "..\\src\\01.cpp" 
+..\src\01.cpp: In function 'int main()':
+..\src\01.cpp:8:2: error: expected ',' or ';' before 'do'
+  do {
+  ^~
+Info: Nothing to build for 09
+Info: Nothing to build for helloworld
+11:32:35 **** Incremental Build of configuration Debug for project 01 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\01.o" "..\\src\\01.cpp" 
+..\src\01.cpp: In function 'int main()':
+..\src\01.cpp:8:2: error: expected ',' or ';' before 'do'
+  do {
+  ^~
+Info: Nothing to build for 09
+Info: Nothing to build for helloworld
+11:32:44 **** Incremental Build of configuration Debug for project 01 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\01.o" "..\\src\\01.cpp" 
+g++ -o 01.exe "src\\01.o" 
+Info: Nothing to build for 09
+Info: Nothing to build for helloworld
+Info: Nothing to build for 01
+11:33:18 **** Incremental Build of configuration Debug for project 01 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\01.o" "..\\src\\01.cpp" 
+g++ -o 01.exe "src\\01.o" 
+Info: Nothing to build for 09
+Info: Nothing to build for helloworld
+Info: Nothing to build for 01
+11:58:57 **** Rebuild of configuration Debug for project 02 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\02.o" "..\\src\\02.cpp" 
+..\src\02.cpp: In function 'int main()':
+..\src\02.cpp:8:2: error: expected ',' or ';' before 'cout'
+  cout << b-7 << endl;
+  ^~~~
+..\src\02.cpp:7:6: warning: unused variable 'b' [-Wunused-variable]
+  int b = 100
+      ^
+11:59:08 **** Incremental Build of configuration Debug for project 02 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\02.o" "..\\src\\02.cpp" 
+g++ -o 02.exe "src\\02.o" 
+Info: Nothing to build for 02
