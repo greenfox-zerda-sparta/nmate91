@@ -42,6 +42,8 @@ int main() {
   cout << "Length after remove: " << list_length(*my_list) << endl;
   Node* my_list_two = list_construct_one(a);
   list_concat(*my_list, *my_list_two);
+  delete my_list;
+  delete my_list_two;
   return 0;
 }
 

@@ -47,6 +47,8 @@ int main() {
   for (unsigned int i = 0; i < concated_shit->size; i++){
     cout << concated_shit->array[i] << " ";
   }
+  delete test_vector;
+  delete test_vector2;
   return 0;
 }
 

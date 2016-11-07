@@ -62,20 +62,21 @@ const bool is_this_empty(Stack& stack) {
   return false;
 }
 
+void print_out(double* array, int size) {
+  for (int i = 0; i < size; i++) {
+      cout << array[i] << " ";
+  }
+}
 
 int main() {
  double array[] = {0, 1, 2};
  int size = sizeof(array)/sizeof(*array);
  Stack* test_struct = stack_construct(array, size);
- for (int i = 0; i < test_struct->size; i++) {
-   cout << test_struct->array[i] << " ";
- }
+ print_out(test_struct->array, test_struct->size);
  cout << endl;
  double b = 4;
  stack_push(*test_struct, b);
- for (int i = 0; i < test_struct->size; i++) {
-    cout << test_struct->array[i] << " ";
- }
+ print_out(test_struct->array, test_struct->size);
  cout << endl;
  cout << stack_pop(*test_struct) << endl;
  cout << stack_pop(*test_struct) << endl;
@@ -86,5 +87,6 @@ int main() {
  for (int i = 0; i < test_struct->size; i++) {
     cout << test_struct->array[i] << " ";
   }
+ delete test_struct;
  return 0;
 }
