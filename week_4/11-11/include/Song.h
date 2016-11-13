@@ -13,13 +13,10 @@ protected:
 public:
   Song();
   double get_avg_song();
-  int get_avg_artist();
-  int get_avg_genre();
-  int get_top_song();
   string get_genre();
-  void set_rating(double);
   string get_artist();
   string get_title();
+  void set_rating(double _rating);
 };
 
 #endif // SONG_H
