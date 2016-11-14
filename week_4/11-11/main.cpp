@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "Song.h"
 #include "Rock.h"
 #include "Pop.h"
 #include "Reggie.h"
@@ -9,14 +8,16 @@ using namespace std;
 
 int main () {
   JukeBox jukebox;
+  cout << jukebox.get_top_genre() << endl;
+
   Rock painforpleasure = Rock("Sum 41", "Pain for pleasure");
   jukebox.add_song(painforpleasure);
   jukebox.rate_song(painforpleasure, 3);
   jukebox.rate_song(painforpleasure, 5);
   jukebox.rate_song(painforpleasure, 3);
-  cout << painforpleasure.get_artist() << endl;
-  cout << painforpleasure.get_title() << endl;
-  cout << painforpleasure.get_avg_song() << endl;
+  cout << painforpleasure.get_artist() << ": ";
+  cout << painforpleasure.get_title() << "; Average rating: ";
+  cout << painforpleasure.get_avg_song() << ", Genre: ";
   cout << painforpleasure.get_genre() << endl;
 
   Rock fatlip = Rock("Sum 41", "Fat Lip");
@@ -24,9 +25,9 @@ int main () {
   jukebox.rate_song(fatlip, 5);
   jukebox.rate_song(fatlip, 5);
   jukebox.rate_song(fatlip, 5);
-  cout << fatlip.get_artist() << endl;
-  cout << fatlip.get_title() << endl;
-  cout << fatlip.get_avg_song() << endl;
+  cout << fatlip.get_artist() << ": ";
+  cout << fatlip.get_title() << "; Average rating: ";
+  cout << fatlip.get_avg_song() << ", Genre: ";
   cout << fatlip.get_genre() << endl;
 
   Pop hellof = Pop("Schoolboy Q", "Hell of a night");
@@ -34,9 +35,9 @@ int main () {
   jukebox.rate_song(hellof, 3);
   jukebox.rate_song(hellof, 4);
   jukebox.rate_song(hellof, 3);
-  cout << hellof.get_artist() << endl;
-  cout << hellof.get_title() << endl;
-  cout << hellof.get_avg_song() << endl;
+  cout << hellof.get_artist() << ": ";
+  cout << hellof.get_title() << "; Average rating: ";
+  cout << hellof.get_avg_song() << ", Genre: ";
   cout << hellof.get_genre() << endl;
 
   Reggie badboyz = Reggie("Bob Marley", "Bad boys");
@@ -44,12 +45,13 @@ int main () {
   jukebox.rate_song(badboyz, 3);
   jukebox.rate_song(badboyz, 1);
   jukebox.rate_song(badboyz, 3);
-  cout << badboyz.get_artist() << endl;
-  cout << badboyz.get_title() << endl;
-  cout << badboyz.get_avg_song() << endl;
+  cout << badboyz.get_artist() << ": ";
+  cout << badboyz.get_title() << "; Average rating: ";
+  cout << badboyz.get_avg_song() << ", Genre: ";
   cout << badboyz.get_genre() << endl;
 
-  cout << jukebox.get_artist_rating("Sum 41") << endl;
-  cout << jukebox.get_genre_rating("Pop") << endl;
-  cout << jukebox.get_top_title() << endl;
+  cout << "Sum 41 rating: " << jukebox.get_artist_rating("Sum 41") << endl;
+  cout << "Pop rating: " << jukebox.get_genre_rating("Pop") << endl;
+  cout << "Top title: " << jukebox.get_top_title() << endl;
+  cout << "Top genre: " << jukebox.get_top_genre() << endl;
 }

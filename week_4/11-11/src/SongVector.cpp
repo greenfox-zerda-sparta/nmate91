@@ -1,5 +1,5 @@
 #include "SongVector.h"
-// what does this shit
+
 SongVector::SongVector() {
   songs = NULL;
   song_count = 0;

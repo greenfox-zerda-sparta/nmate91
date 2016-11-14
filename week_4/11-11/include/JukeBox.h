@@ -2,9 +2,9 @@
 #define JUKEBOX_H
 #include "Song.h"
 #include "SongVector.h"
-#include "Rock.h"
-#include "Pop.h"
-#include "Reggie.h"
+#include <iostream>
+
+using namespace std;
 
 class JukeBox {
 private:
@@ -18,6 +18,7 @@ public:
   double get_artist_rating(string _artist);
   double get_genre_rating(string _genre);
   string get_top_title();
+  string get_top_genre();
 };
 
 #endif // JUKEBOX_H

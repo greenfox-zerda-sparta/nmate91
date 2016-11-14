@@ -9,8 +9,6 @@ public:
   SongVector();
   ~SongVector();
   void push_song(Song& song);
-  string song_artist();
-  double song_rating();
 };
 
 #endif // SONGVECTOR_H
