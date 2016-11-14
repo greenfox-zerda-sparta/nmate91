@@ -4,6 +4,10 @@ Song::Song() {
   //constructor
 }
 
+Song::~Song() {
+
+}
+
 double Song::get_avg_song() {
   return (this->rating / this->count_rating);
 }

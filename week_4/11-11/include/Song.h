@@ -12,6 +12,7 @@ protected:
   double count_rating = 0;
 public:
   Song();
+  ~Song();
   double get_avg_song();
   string get_genre();
   string get_artist();

@@ -15,6 +15,7 @@ public:
   JukeBox();
   void add_song(Song& song);
   void rate_song(Song& song, double value);
+  double get_artist_rating(string _artist);
 };
 
 #endif // JUKEBOX_H
