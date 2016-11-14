@@ -33,3 +33,27 @@ double JukeBox::get_artist_rating(string _artist) {
   }
   return (artist_rate / count_artist);
 }
+
+double JukeBox::get_genre_rating(string _genre) {
+  double genre_rate;
+  int count_genre = 0;
+  for (int i = 0; i < songs.song_count; i++) {
+    if (songs.songs[i]->get_genre() == _genre) {
+       genre_rate = genre_rate + songs.songs[i]->get_avg_song();
+       count_genre++;
+    }
+  }
+  return (genre_rate / count_genre);
+}
+
+string JukeBox::get_top_title() {
+  string top_title;
+  double top_title_rate = 0;
+  for (int i = 0; i < songs.song_count; i++) {
+    if (songs.songs[i]->get_avg_song() > top_title_rate) {
+      top_title_rate = songs.songs[i]->get_avg_song();
+      top_title = songs.songs[i]->get_title();
+    }
+  }
+  return top_title;
+}

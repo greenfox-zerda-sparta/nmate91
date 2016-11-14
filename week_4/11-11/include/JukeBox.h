@@ -16,6 +16,8 @@ public:
   void add_song(Song& song);
   void rate_song(Song& song, double value);
   double get_artist_rating(string _artist);
+  double get_genre_rating(string _genre);
+  string get_top_title();
 };
 
 #endif // JUKEBOX_H

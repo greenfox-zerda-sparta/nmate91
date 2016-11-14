@@ -49,5 +49,7 @@ int main () {
   cout << badboyz.get_avg_song() << endl;
   cout << badboyz.get_genre() << endl;
 
-  cout << jukebox.get_artist_rating("Sum 41");
+  cout << jukebox.get_artist_rating("Sum 41") << endl;
+  cout << jukebox.get_genre_rating("Pop") << endl;
+  cout << jukebox.get_top_title() << endl;
 }
