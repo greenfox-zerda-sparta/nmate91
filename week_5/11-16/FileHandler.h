@@ -3,11 +3,14 @@
 #define FILEHANDLER_H
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 class FileHandler {
 public:
-  FileHandler(string file_name);
+  FileHandler();
+  virtual ~FileHandler();
+  void read_file();
 };
 
 #endif // FILEHANDLER_H

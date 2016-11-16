@@ -4,5 +4,4 @@
 #include <iostream>
 
 void print_usage();
-
 #endif // PRINTUSAGE_H
