@@ -9,9 +9,8 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-  if (argv[0][0]) {
+  if (argc == 1) {
     print_usage();
-    cout << argv[0] << endl;
   }
   else if (argv[1][0] == '-' && argv[1][1] == 'a') {
     WriteFile write_my_file;
@@ -22,7 +21,9 @@ int main(int argc, char *argv[]) {
     read_my_file.read_file();
   }
   else {
+    cerr << "Wrong argument." << endl << endl;
     print_usage();
+    return 1;
   }
   return 0;
 }

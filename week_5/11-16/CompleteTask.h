@@ -3,12 +3,12 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+
 using namespace std;
 
-class WriteFile {
+class CompleteTask {
 public:
-  WriteFile();
-  virtual ~WriteFile();
-  void add_a_task();
+  CompleteTask();
+  ~CompleteTask();
 };
 
