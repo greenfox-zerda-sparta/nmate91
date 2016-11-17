@@ -17,7 +17,7 @@ public:
   void print();
   void add_task(string new_task);
   void remove_task(int index); //not working well
-  char complete();
+  void make_complete(int index);
 };
 
 #endif

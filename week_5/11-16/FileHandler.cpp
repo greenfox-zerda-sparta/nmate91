@@ -19,10 +19,17 @@ FileHandler::FileHandler() {
   read_file.close();
 }
 
+void FileHandler::make_complete(int index) {
+  tasks[index].at(tasks[index].length() - 1) = 'x';
+}
+
 void FileHandler::print() {
   for (int i = 0; i < number_of_lines; i++) {
+    string temp = tasks[i];
+    char lastChar = temp.at(temp.length() - 1);
+    temp.erase(temp.length() - 1);
     string count_string = to_string(i + 1);
-    cout << count_string + " - " + "[" + complete() +  "]" + tasks[i] << endl;
+    cout << count_string + " - " + "[" + lastChar + "] " + temp << endl;
   }
 }
 
@@ -50,9 +57,6 @@ void FileHandler::remove_task(int index) {
   tasks = new_tasks;
 }
 
-char FileHandler::complete() {
-
-}
 
 FileHandler::~FileHandler() {
   ofstream task_out("mytext.txt");
