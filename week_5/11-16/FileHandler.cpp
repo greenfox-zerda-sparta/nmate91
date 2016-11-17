@@ -38,7 +38,7 @@ void FileHandler::add_task(string new_task) {
   for (int i = 0; i < number_of_lines; i++) {
     new_tasks[i] = tasks[i];
   }
-  new_tasks[number_of_lines] = new_task;
+  new_tasks[number_of_lines] = new_task + ' ';
   number_of_lines++;
   delete[] tasks;
   tasks = new_tasks;

@@ -26,14 +26,14 @@ int main(int argc, char *argv[]) {
     int index;
     cin >> index;
     FileHandler remove_task_from_file;
-    remove_task_from_file.remove_task(index);
+    remove_task_from_file.remove_task(index - 1);
   }
   else if (argv[1][0] == '-' && argv[1][1] == 'c') {
     cout << "Pleas give which index you want to complete!" << endl;
     int index;
     cin >> index;
     FileHandler complete_task_from_file;
-    complete_task_from_file.make_complete(index);
+    complete_task_from_file.make_complete(index + 1);
   }
   else {
     cerr << "Wrong argument." << endl << endl;
