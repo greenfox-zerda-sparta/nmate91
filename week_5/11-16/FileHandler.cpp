@@ -5,7 +5,6 @@ using namespace std;
 
 
 FileHandler::FileHandler() {
-  //beolvasom vele a txt-t, lesz egy array, tasks, amit feltoltok line-stringekkel
   ifstream read_file;
   read_file.open("mytext.txt");
   string line;
@@ -15,21 +14,32 @@ FileHandler::FileHandler() {
       tasks[number_of_lines] = line;
       number_of_lines++;
     }
+    read_file.close();
   }
-  read_file.close();
 }
 
 void FileHandler::make_complete(int index) {
-  tasks[index].at(tasks[index].length() - 1) = 'x';
+  if (index >= 0 && index < sizeof(tasks)) {
+    tasks[index].at(tasks[index].length() - 1) = 'x';
+  }
+  else {
+    cout << "Index is out of bound." << endl;
+    return;
+  }
 }
 
 void FileHandler::print() {
-  for (int i = 0; i < number_of_lines; i++) {
-    string temp = tasks[i];
-    char lastChar = temp.at(temp.length() - 1);
-    temp.erase(temp.length() - 1);
-    string count_string = to_string(i + 1);
-    cout << count_string + " - " + "[" + lastChar + "] " + temp << endl;
+  if (number_of_lines == 0) {
+    cout << endl << "Go home, grab a beer. Nothin to do." << endl;
+  }
+  else {
+    for (int i = 0; i < number_of_lines; i++) {
+      string temp = tasks[i];
+      char lastChar = temp.at(temp.length() - 1);
+      temp.erase(temp.length() - 1);
+      string count_string = to_string(i + 1);
+      cout << count_string + " - " + "[" + lastChar + "] " + temp << endl;
+    }
   }
 }
 
@@ -45,18 +55,23 @@ void FileHandler::add_task(string new_task) {
 }
 
 void FileHandler::remove_task(int index) {
-  string* new_tasks = new string[1024];
-  for (int i = 0; i < index; i++) {
-    new_tasks[i] = tasks[i];
+  if (index >= 0 && index < sizeof(tasks)) {
+    string* new_tasks = new string[1024];
+    for (int i = 0; i < index; i++) {
+      new_tasks[i] = tasks[i];
+    }
+    for (int i = index + 1; i < number_of_lines; i++) {
+      new_tasks[i - 1] = tasks[i];
+    }
+    number_of_lines--;
+    delete[] tasks;
+    tasks = new_tasks;
   }
-  for (int i = index + 1; i < number_of_lines; i++) {
-    new_tasks[i - 1] = tasks[i];
+  else {
+    cout << "Index is out of bound." << endl;
+    return;
   }
-  number_of_lines--;
-  delete[] tasks;
-  tasks = new_tasks;
 }
-
 
 FileHandler::~FileHandler() {
   ofstream task_out("mytext.txt");
