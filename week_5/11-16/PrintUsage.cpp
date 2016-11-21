@@ -7,6 +7,7 @@ void print_usage() {
   std::cout << " -a   Adds a new task" << std::endl << " -r   Removes an task" << std::endl;
   std::cout << " -c   Completes an task" << std::endl << " Please choose an option!" << std::endl;
 }
+
 void _a_argument() {
   cout << "Please give me the name of the task!" << endl << endl;
   string input_string;
@@ -14,10 +15,12 @@ void _a_argument() {
   FileHandler add_task_to_file;
   add_task_to_file.add_task(input_string);
 }
+
 void _l_argument() {
   FileHandler print_to_terminal;
   print_to_terminal.print();
 }
+
 void _r_argument() {
   cout << "Please give which index you want to remove!" << endl << endl;
   int index;
@@ -25,6 +28,7 @@ void _r_argument() {
   FileHandler remove_task_from_file;
   remove_task_from_file.remove_task(index - 1);
 }
+
 void _c_argument() {
   cout << "Please give which index you want to complete!" << endl << endl;
   int index;

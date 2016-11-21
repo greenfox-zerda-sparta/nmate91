@@ -16,7 +16,7 @@ public:
   ~FileHandler();
   void print();
   void add_task(string new_task);
-  void remove_task(int index); //not working well
+  void remove_task(int index);
   void make_complete(int index);
 };
 

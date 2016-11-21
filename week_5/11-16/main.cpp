@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
+#include <vld.h> 
 #include <fstream>
 #include "PrintUsage.h"
 #include "FileHandler.h"

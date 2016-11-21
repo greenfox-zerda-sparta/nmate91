@@ -3,9 +3,6 @@
 #ifndef PRINTUSAGE_H
 #define PRINTUSAGE_H
 
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "FileHandler.h"
 
 void print_usage();
