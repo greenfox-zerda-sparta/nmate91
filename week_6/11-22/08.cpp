@@ -12,6 +12,8 @@ using namespace std;
 //
 // Illustrate in the main function both when it works fine and when exceptions occur.
 
+string interpretException(int exception);
+
 int main() {
   try {
     Stack my_stack;
@@ -24,23 +26,25 @@ int main() {
     my_stack.push(6);
   }
   catch (int a) {
-    if (a == -1) {
-      cout << "Your stack is full." << endl;
-    } else if (a == -2) {
-      cout << "Your stack is empty." << endl;
-    }
+    cout << interpretException(a) << endl;
   }
+
   try {
     Stack my_stack2;
     my_stack2.pop();
   }
   catch (int a) {
-    if (a == -1) {
-      cout << "Your stack is full." << endl;
-    } else if (a == -2) {
-      cout << "Your stack is empty." << endl;
-    }
+    cout << interpretException(a) << endl;
   }
   return 0;
 }
 
+string interpretException(int exception) {
+  if (exception == -1) {
+      return "Your stack is full.";
+    }
+    else if (exception == -2) {
+      return "Your stack is empty.";
+    }
+  return "WTF";
+}
