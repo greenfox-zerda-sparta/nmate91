@@ -22,8 +22,9 @@ using namespace std;
 // Demonstrate how this works in the main function. Print the error messages from the main function.
 
 int main() {
+  Stack my_stack;
+  Stack my_stack2;
   try {
-    Stack my_stack;
     my_stack.push(4);
     my_stack.push(2);
     my_stack.push(6);
@@ -34,16 +35,15 @@ int main() {
   }
   catch (MyErrors err) {
     Exceptions something(err);
-    cout << something.toString() << endl;
+    cout << something.toString() << "At: " << my_stack.get_index() << endl;
   }
 
   try {
-    Stack my_stack2;
     my_stack2.pop();
   }
   catch (MyErrors err) {
     Exceptions something2(err);
-    cout << something2.toString() << endl;
+    cout << something2.toString() << "At: " << my_stack2.get_index() << endl;
   }
   return 0;
 }

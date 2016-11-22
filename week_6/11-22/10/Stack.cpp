@@ -1,7 +1,6 @@
 #include "Stack.h"
 
-Stack::Stack()
-{
+Stack::Stack() {
   fixed_array = new int[5];
 }
 
@@ -24,6 +23,10 @@ void Stack::pop() throw(MyErrors) {
   }
   delete[] fixed_array;
   fixed_array = new_fixed_array;
+}
+
+int Stack::get_index(){
+  return number_of_elements;
 }
 
 Stack::~Stack() {

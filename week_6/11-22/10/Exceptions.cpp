@@ -2,7 +2,7 @@
 
 Exceptions::Exceptions(MyErrors err)
 {
-  class_error = err;
+  this->class_error = err;
 }
 
 string Exceptions::toString() {

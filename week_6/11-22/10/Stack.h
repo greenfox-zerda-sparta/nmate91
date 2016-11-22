@@ -11,6 +11,7 @@ class Stack {
     Stack();
     void push(int number) throw (MyErrors);
     void pop() throw (MyErrors);
+    int get_index();
     ~Stack();
   private:
     int* fixed_array;
