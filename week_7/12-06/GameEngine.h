@@ -73,42 +73,6 @@ public:
   virtual void render(GameContext& context) = 0;
 };
 
-class MyGame : public Game {
-private:
-  std::vector<std::vector<int>> victor;
-public:
-  MyGame() {
-    std::vector<std::vector<int>> vic(10, std::vector<int>(10, 100));
-    this->victor = vic;
-    int random_number = 0;
-    for (int j = 0; j < victor.size(); j++) {
-      for (int i = 0; i < victor[j].size(); i++) {
-        random_number = rand() % 100 + 1;
-        victor[j][i] = random_number;
-      }
-    }
-  }
-  ~MyGame() {
-  }
-  virtual void init(GameContext& context) {
-    context.load_file("floor.bmp");
-    context.load_file("wall.bmp");
-  }
-  virtual void render(GameContext& context) {
-    for (int i = 0; i < victor.size(); i++) {
-      for (int j = 0; j < victor[i].size(); j++) {
-        if (victor[i][j] % 2 == 0) {
-          context.draw_sprite("floor.bmp", i * 72, j * 72);
-        }
-        else {
-          context.draw_sprite("wall.bmp", i * 72, j * 72);
-        }
-      }
-    }
-    context.render();
-  }
-};
-
 class GameEngine {
 private:
   GameContext* context;

@@ -1,4 +1,5 @@
-#include "Header.h"
+#include "GameEngine.h"
+#include "MyGame.h"
 
 int main(int argc, char* args[]) {
   MyGame game;
