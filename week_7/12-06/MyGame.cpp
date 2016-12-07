@@ -53,6 +53,7 @@ void MyGame::init(GameContext& context) {
   context.load_file("hero-left.bmp");
   context.load_file("hero-right.bmp");
   context.load_file("skeleton.bmp");
+  context.load_file("boss.bmp");
 }
 
 void MyGame::draw_char_direction(GameContext& context, int keycode) {
@@ -86,6 +87,7 @@ void MyGame::draw_map(GameContext& context) {
       }
     }
   }
+  context.draw_sprite("boss.bmp", (v.size() - 1) * 72, (v.size() - 1) * 72);
 }
 
 void MyGame::render(GameContext& context) {
@@ -95,7 +97,6 @@ void MyGame::render(GameContext& context) {
     y = y + 72;
     if (y > (720 - 72)) {
       y = (720 - 72);
-      context.render();
     }
     else if (v[x / 72][y / 72] == 0) {
       y = y - 72;
@@ -106,7 +107,6 @@ void MyGame::render(GameContext& context) {
     y = y - 72;
     if (y < 0) {
       y = 0;
-      context.render();
     }
     else if (v[x / 72][y / 72] == 0) {
       y = y + 72;
@@ -117,7 +117,6 @@ void MyGame::render(GameContext& context) {
     x = x - 72;
     if (x < 0) {
       x = 0;
-      context.render();
     }
     else if (v[x / 72][y / 72] == 0) {
       x = x + 72;
@@ -128,7 +127,6 @@ void MyGame::render(GameContext& context) {
     x = x + 72;
     if (x > (720 - 72)) {
       x = (720 - 72);
-      context.render();
     }
     else if (v[x / 72][y / 72] == 0) {
       x = x - 72;
