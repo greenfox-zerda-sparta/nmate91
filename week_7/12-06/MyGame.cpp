@@ -28,6 +28,18 @@ MyGame::MyGame() {
       }
     }
   }
+  for (int i = 5; i < v.size(); i++) {
+    for (int j = 5; j < v[i].size(); j++) {
+      if (v[i][j] == 1) {
+        v[i][j] = 2;
+        ghost_counter++;
+        break;
+      }
+    }
+    if (ghost_counter == 3) {
+      break;
+    }
+  }
 }
 
 MyGame::~MyGame() {
@@ -40,6 +52,7 @@ void MyGame::init(GameContext& context) {
   context.load_file("hero-up.bmp");
   context.load_file("hero-left.bmp");
   context.load_file("hero-right.bmp");
+  context.load_file("skeleton.bmp");
 }
 
 void MyGame::draw_char_direction(GameContext& context, int keycode) {
@@ -59,17 +72,24 @@ void MyGame::draw_char_direction(GameContext& context, int keycode) {
   }
 }
 
-void MyGame::render(GameContext& context) {
+void MyGame::draw_map(GameContext& context) {
   for (int i = 0; i < v.size(); i++) {
     for (int j = 0; j < v[i].size(); j++) {
       if (v[i][j] == 0) {
         context.draw_sprite("wall.bmp", i * 72, j * 72);
       }
-      else {
+      else if (v[i][j] == 1) {
         context.draw_sprite("floor.bmp", i * 72, j * 72);
+      }
+      else if (v[i][j] == 2) {
+        context.draw_sprite("skeleton.bmp", i * 72, j * 72);
       }
     }
   }
+}
+
+void MyGame::render(GameContext& context) {
+  draw_map(context);
   draw_char_direction(context, keycode);
   if (context.was_key_pressed(ARROW_DOWN)) {
     y = y + 72;
@@ -80,8 +100,6 @@ void MyGame::render(GameContext& context) {
     else if (v[x / 72][y / 72] == 0) {
       y = y - 72;
     }
-    context.reset_keys();
-    context.on_key_down(ARROW_DOWN);
     keycode = 2;
   }
   else if (context.was_key_pressed(ARROW_UP)) {
@@ -93,8 +111,6 @@ void MyGame::render(GameContext& context) {
     else if (v[x / 72][y / 72] == 0) {
       y = y + 72;
     }
-    context.reset_keys();
-    context.on_key_down(ARROW_UP);
     keycode = 0;
   }
   else if (context.was_key_pressed(ARROW_LEFT)) {
@@ -106,8 +122,6 @@ void MyGame::render(GameContext& context) {
     else if (v[x / 72][y / 72] == 0) {
       x = x + 72;
     }
-    context.reset_keys();
-    context.on_key_down(ARROW_LEFT);
     keycode = 3;
   }
   else if (context.was_key_pressed(ARROW_RIGHT)) {
@@ -119,8 +133,6 @@ void MyGame::render(GameContext& context) {
     else if (v[x / 72][y / 72] == 0) {
       x = x - 72;
     }
-    context.reset_keys();
-    context.on_key_down(ARROW_RIGHT);
     keycode = 1;
   }
   context.render();
