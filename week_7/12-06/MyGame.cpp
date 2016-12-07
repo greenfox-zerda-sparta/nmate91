@@ -28,18 +28,6 @@ MyGame::MyGame() {
       }
     }
   }
-  for (int i = 5; i < v.size(); i++) {
-    for (int j = 5; j < v[i].size(); j++) {
-      if (v[i][j] == 1) {
-        v[i][j] = 2;
-        ghost_counter++;
-        break;
-      }
-    }
-    if (ghost_counter == 3) {
-      break;
-    }
-  }
 }
 
 MyGame::~MyGame() {
@@ -56,21 +44,59 @@ void MyGame::init(GameContext& context) {
   context.load_file("boss.bmp");
 }
 
-void MyGame::draw_char_direction(GameContext& context, int keycode) {
+void MyGame::draw_player_direction(GameContext& context, int keycode) {
   switch (keycode) {
   case 0:
-    context.draw_sprite("hero-up.bmp", x, y);
+    context.draw_sprite("hero-up.bmp", x_player, y_player);
     break;
   case 1:
-    context.draw_sprite("hero-right.bmp", x, y);
+    context.draw_sprite("hero-right.bmp", x_player, y_player);
     break;
   case 2:
-    context.draw_sprite("hero-down.bmp", x, y);
+    context.draw_sprite("hero-down.bmp", x_player, y_player);
     break;
   case 3:
-    context.draw_sprite("hero-left.bmp", x, y);
+    context.draw_sprite("hero-left.bmp", x_player, y_player);
     break;
   }
+}
+
+void MyGame::draw_skeleton(GameContext& context) {
+  int ske_counter = 0;
+  for (int i = 5; i < v.size(); i++) {
+    for (int j = 5; j < v[i].size(); j++) {
+      if (v[i][j] == 1) {
+        x_skeleton1 = j * 72;
+        y_skeleton1 = i * 72;
+        goto end1;
+      }
+    }
+  }
+  end1:
+  for (int i = 6; i < v.size(); i++) {
+    for (int j = 6; j < v[i].size(); j++) {
+      if (v[i][j] == 1) {
+        x_skeleton2 = i * 72;
+        y_skeleton2 = j * 72;
+        goto end2;
+      }
+    }
+  }
+  end2:
+  for (int i = 7; i < v.size(); i++) {
+    for (int j = 7; j < v[i].size(); j++) {
+      if (v[i][j] == 1) {
+        x_skeleton3 = i * 72;
+        y_skeleton3 = j * 72;
+        goto end3;
+      }
+    }
+  }
+  end3:
+  context.draw_sprite("skeleton.bmp", x_skeleton1, y_skeleton1);
+  context.draw_sprite("skeleton.bmp", x_skeleton2, y_skeleton2);
+  context.draw_sprite("skeleton.bmp", x_skeleton3, y_skeleton3);
+  context.draw_sprite("boss.bmp", x_boss, y_boss);
 }
 
 void MyGame::draw_map(GameContext& context) {
@@ -82,54 +108,51 @@ void MyGame::draw_map(GameContext& context) {
       else if (v[i][j] == 1) {
         context.draw_sprite("floor.bmp", i * 72, j * 72);
       }
-      else if (v[i][j] == 2) {
-        context.draw_sprite("skeleton.bmp", i * 72, j * 72);
-      }
     }
   }
-  context.draw_sprite("boss.bmp", (v.size() - 1) * 72, (v.size() - 1) * 72);
 }
 
 void MyGame::render(GameContext& context) {
   draw_map(context);
-  draw_char_direction(context, keycode);
+  draw_player_direction(context, keycode);
+  draw_skeleton(context);
   if (context.was_key_pressed(ARROW_DOWN)) {
-    y = y + 72;
-    if (y > (720 - 72)) {
-      y = (720 - 72);
+    y_player = y_player + 72;
+    if (y_player > (720 - 72)) {
+      y_player = (720 - 72);
     }
-    else if (v[x / 72][y / 72] == 0) {
-      y = y - 72;
+    else if (v[x_player / 72][y_player / 72] == 0) {
+      y_player = y_player - 72;
     }
     keycode = 2;
   }
   else if (context.was_key_pressed(ARROW_UP)) {
-    y = y - 72;
-    if (y < 0) {
-      y = 0;
+    y_player = y_player - 72;
+    if (y_player < 0) {
+      y_player = 0;
     }
-    else if (v[x / 72][y / 72] == 0) {
-      y = y + 72;
+    else if (v[x_player / 72][y_player / 72] == 0) {
+      y_player = y_player + 72;
     }
     keycode = 0;
   }
   else if (context.was_key_pressed(ARROW_LEFT)) {
-    x = x - 72;
-    if (x < 0) {
-      x = 0;
+    x_player = x_player - 72;
+    if (x_player < 0) {
+      x_player = 0;
     }
-    else if (v[x / 72][y / 72] == 0) {
-      x = x + 72;
+    else if (v[x_player / 72][y_player / 72] == 0) {
+      x_player = x_player + 72;
     }
     keycode = 3;
   }
   else if (context.was_key_pressed(ARROW_RIGHT)) {
-    x = x + 72;
-    if (x > (720 - 72)) {
-      x = (720 - 72);
+    x_player = x_player + 72;
+    if (x_player >(720 - 72)) {
+      x_player = (720 - 72);
     }
-    else if (v[x / 72][y / 72] == 0) {
-      x = x - 72;
+    else if (v[x_player / 72][y_player / 72] == 0) {
+      x_player = x_player - 72;
     }
     keycode = 1;
   }
