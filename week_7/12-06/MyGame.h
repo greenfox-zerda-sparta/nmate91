@@ -2,8 +2,9 @@
 
 #include "GameEngine.h"
 #include "Map.h"
+#include "Character.h"
 
-class MyGame : public Game {
+class MyGame : public Game, public Character {
 private:
   Map* map;
   std::vector<std::vector<int>> v;

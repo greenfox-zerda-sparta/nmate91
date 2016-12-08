@@ -1,7 +1,6 @@
 #pragma once
 
 #include "GameEngine.h"
-#include "MyGame.h"
 
 class Map {
 private:

@@ -24,16 +24,16 @@ void MyGame::init(GameContext& context) {
 void MyGame::draw_player_direction(GameContext& context, int keycode) {
   switch (keycode) {
   case 0:
-    context.draw_sprite("hero-up.bmp", x_player, y_player);
+    context.draw_sprite("hero-up.bmp", x, y);
     break;
   case 1:
-    context.draw_sprite("hero-right.bmp", x_player, y_player);
+    context.draw_sprite("hero-right.bmp", x, y);
     break;
   case 2:
-    context.draw_sprite("hero-down.bmp", x_player, y_player);
+    context.draw_sprite("hero-down.bmp", x, y);
     break;
   case 3:
-    context.draw_sprite("hero-left.bmp", x_player, y_player);
+    context.draw_sprite("hero-left.bmp", x, y);
     break;
   }
 }
@@ -93,42 +93,42 @@ void MyGame::render(GameContext& context) {
   draw_skeleton(context);
   draw_player_direction(context, keycode);
   if (context.was_key_pressed(ARROW_DOWN)) {
-    y_player = y_player + 72;
-    if (y_player > (720 - 72)) {
-      y_player = (720 - 72);
+    set_y(y + 72);
+    if (y > (720 - 72)) {
+      set_y(720 - 72);
     }
-    else if (v[x_player / 72][y_player / 72] == 0) {
-      y_player = y_player - 72;
+    else if (v[x / 72][y / 72] == 0) {
+      set_y(y - 72);
     }
     keycode = 2;
   }
   else if (context.was_key_pressed(ARROW_UP)) {
-    y_player = y_player - 72;
-    if (y_player < 0) {
-      y_player = 0;
+    set_y(y - 72);
+    if (y < 0) {
+      set_y(0);
     }
-    else if (v[x_player / 72][y_player / 72] == 0) {
-      y_player = y_player + 72;
+    else if (v[x / 72][y / 72] == 0) {
+      set_y(y + 72);
     }
     keycode = 0;
   }
   else if (context.was_key_pressed(ARROW_LEFT)) {
-    x_player = x_player - 72;
-    if (x_player < 0) {
-      x_player = 0;
+    set_x(x - 72);
+    if (x < 0) {
+      set_x(0);
     }
-    else if (v[x_player / 72][y_player / 72] == 0) {
-      x_player = x_player + 72;
+    else if (v[x / 72][y / 72] == 0) {
+      set_x(x + 72);
     }
     keycode = 3;
   }
   else if (context.was_key_pressed(ARROW_RIGHT)) {
-    x_player = x_player + 72;
-    if (x_player >(720 - 72)) {
-      x_player = (720 - 72);
+    set_x(x + 72);
+    if (x >(720 - 72)) {
+      set_x(720 - 72);
     }
-    else if (v[x_player / 72][y_player / 72] == 0) {
-      x_player = x_player - 72;
+    else if (v[x / 72][y / 72] == 0) {
+      set_x(x - 72);
     }
     keycode = 1;
   }
