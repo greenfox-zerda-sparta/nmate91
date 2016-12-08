@@ -1,36 +1,13 @@
 #include "MyGame.h"
-#include <time.h>
+
 
 MyGame::MyGame() {
-  srand(time(NULL));
-  std::vector<std::vector<int>> vic(10, std::vector<int>(10, 1));
-  this->v = vic;
-  int random_number = 0;
-  for (int i = 1; i < v.size() - 1; i++) {
-    for (int j = 1; j < v[i].size() - 1; j++) {
-      random_number = rand() % 2;
-      v[i][j] = random_number;
-    }
-  }
-  for (int i = 1; i < v.size() - 1; i++) {
-    for (int j = 1; j < v[i].size() - 1; j++) {
-      if (v[i - 1][j - 1] == 0) {
-        v[i][j] = 1;
-      }
-      else if (v[i][j - 1] == 1 && v[i - 1][j] == 1 && v[i][j + 1] == 1) {
-        v[i][j] = 0;
-      }
-      else if (v[i][j - 1] == 0 && v[i + 1][j] == 0 && v[i - 1][j] == 0 && v[i][j + 1] == 0) {
-        v[i][j] = 0;
-      }
-      else if ((v[i][j - 1] == 1 && v[i + 1][j] == 1) || (v[i - 1][j] == 1 && v[i][j + 1] == 1)) {
-        v[i][j] = 1;
-      }
-    }
-  }
+  this->map = new Map;
+  this->v = map->get_vector();
 }
 
 MyGame::~MyGame() {
+  delete map;
 }
 
 void MyGame::init(GameContext& context) {
@@ -62,7 +39,6 @@ void MyGame::draw_player_direction(GameContext& context, int keycode) {
 }
 
 void MyGame::draw_skeleton(GameContext& context) {
-  int ske_counter = 0;
   for (int i = 5; i < v.size(); i++) {
     for (int j = 5; j < v[i].size(); j++) {
       if (v[i][j] == 1) {
@@ -114,8 +90,8 @@ void MyGame::draw_map(GameContext& context) {
 
 void MyGame::render(GameContext& context) {
   draw_map(context);
-  draw_player_direction(context, keycode);
   draw_skeleton(context);
+  draw_player_direction(context, keycode);
   if (context.was_key_pressed(ARROW_DOWN)) {
     y_player = y_player + 72;
     if (y_player > (720 - 72)) {

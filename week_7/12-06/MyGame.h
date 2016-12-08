@@ -1,9 +1,11 @@
 #pragma once
 
 #include "GameEngine.h"
+#include "Map.h"
 
 class MyGame : public Game {
 private:
+  Map* map;
   std::vector<std::vector<int>> v;
   int x_player = 0;
   int y_player = 0;

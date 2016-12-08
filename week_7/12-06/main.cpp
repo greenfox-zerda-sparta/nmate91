@@ -1,5 +1,7 @@
 #include "GameEngine.h"
 #include "MyGame.h"
+#include "Map.h"
+#include "vld.h"
 
 int main(int argc, char* args[]) {
   MyGame game;
