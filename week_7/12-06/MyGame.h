@@ -4,10 +4,8 @@
 #include "Map.h"
 #include "Character.h"
 
-class MyGame : public Game, public Character {
+class MyGame : public Game, public Map, public Character {
 private:
-  Map* map;
-  std::vector<std::vector<int>> v;
   int x_player = 0;
   int y_player = 0;
   int x_skeleton1 = 0;

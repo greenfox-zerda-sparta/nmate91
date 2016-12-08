@@ -3,11 +3,10 @@
 #include "GameEngine.h"
 
 class Map {
-private:
+protected:
   std::vector<std::vector<int>> v; 
 public:
   Map();
   ~Map();
-  std::vector<std::vector<int>> get_vector();
 };
 

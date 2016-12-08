@@ -32,7 +32,3 @@ Map::Map() {
 
 Map::~Map() {
 }
-
-std::vector<std::vector<int>> Map::get_vector() {
-  return v;
-}

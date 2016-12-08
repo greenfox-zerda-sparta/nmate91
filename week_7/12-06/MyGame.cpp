@@ -2,12 +2,9 @@
 
 
 MyGame::MyGame() {
-  this->map = new Map;
-  this->v = map->get_vector();
 }
 
 MyGame::~MyGame() {
-  delete map;
 }
 
 void MyGame::init(GameContext& context) {
