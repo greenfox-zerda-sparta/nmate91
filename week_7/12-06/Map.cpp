@@ -1,5 +1,4 @@
 #include "Map.h"
-#include <time.h>
 
 Map::Map() {
   srand(time(NULL));
@@ -31,4 +30,21 @@ Map::Map() {
 }
 
 Map::~Map() {
+}
+
+std::vector<std::vector<int>> Map::get_vector() {
+  return v;
+}
+
+void Map::draw_map(GameContext& context) {
+  for (int i = 0; i < v.size(); i++) {
+    for (int j = 0; j < v[i].size(); j++) {
+      if (v[i][j] == 0) {
+        context.draw_sprite("wall.bmp", i * 72, j * 72);
+      }
+      else if (v[i][j] == 1) {
+        context.draw_sprite("floor.bmp", i * 72, j * 72);
+      }
+    }
+  }
 }

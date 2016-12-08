@@ -7,8 +7,6 @@ protected:
   int y = 0;
 public:
   Character();
-  virtual ~Character();
-  virtual void set_x(int);
-  virtual void set_y(int);
+  ~Character();
 };
 
