@@ -8,8 +8,11 @@ Character::~Character() {
 }
 
 void Character::suffer_attack(int attacker_value) {
-  hp = hp - attacker_value + dp;
-  std::cout << hp << std::endl;
+  if (hp > 0) {
+    hp = hp - attacker_value + dp;
+    std::cout << hp << std::endl;
+  }
+  return;
 }
 
 int Character::get_x() {
