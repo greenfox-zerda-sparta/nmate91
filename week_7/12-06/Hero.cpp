@@ -1,12 +1,15 @@
 #include "Hero.h"
 
 Hero::Hero() {
+  hp = 200;
+  sp = 8;
+  dp = 6;
 }
 
 Hero::~Hero() {
 }
 
-void Hero::draw_hero_direction(GameContext& context, int keycode) {
+void Hero::draw_hero_direction(GameContext& context) {
   switch (keycode) {
   case 0:
     context.draw_sprite("hero-up.bmp", x, y);
@@ -23,7 +26,7 @@ void Hero::draw_hero_direction(GameContext& context, int keycode) {
   }
 }
 
-void Hero::move_hero(GameContext& context, int keycode, std::vector<std::vector<int>>& v) {
+void Hero::move_hero(GameContext& context, std::vector<std::vector<int>>& v) {
   if (context.was_key_pressed(ARROW_DOWN)) {
     y = y + 72;
     if (y > (720 - 72)) {

@@ -1,6 +1,5 @@
 #include "MyGame.h"
 
-
 MyGame::MyGame() {
   this->map = new Map;
   this->hero = new Hero;
@@ -37,7 +36,17 @@ void MyGame::render(GameContext& context) {
   skeleton2->draw_skeleton(context, v);
   skeleton3->draw_skeleton(context, v);
   boss->draw_boss(context, v);
-  hero->draw_hero_direction(context, keycode);
-  hero->move_hero(context, keycode, v);
+  hero->draw_hero_direction(context);
+  hero->move_hero(context, v);
+  fight(context);
   context.render();
+}
+
+void MyGame::fight(GameContext& context) {
+  if ((hero->get_x() == skeleton1->get_x()) && (hero->get_y() == skeleton1->get_y()) && context.was_key_pressed(SPACE))
+  {
+    skeleton1->suffer_attack(hero->get_attack());
+    //skeleton1->defence_move(v);
+  }
+  return;
 }

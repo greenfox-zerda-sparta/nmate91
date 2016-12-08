@@ -1,6 +1,9 @@
 #include "Boss.h"
 
 Boss::Boss() {
+  hp = 50;
+  sp = 8;
+  dp = 6;
 }
 
 
@@ -8,11 +11,11 @@ Boss::~Boss() {
 }
 
 void Boss::draw_boss(GameContext& context, std::vector<std::vector<int>>& v) {
-  for (int i = 8; i < v.size(); i++) {
-    for (int j = 8; j < v[i].size(); j++) {
+  for (int i = 7; i < v.size(); i++) {
+    for (int j = 7; j < v[i].size(); j++) {
       if (v[i][j] == 1) {
-        x = j * 72;
-        y = i * 72;
+        x = i * 72;
+        y = j * 72;
         v[i][j] = 3;
         goto end1;
       }

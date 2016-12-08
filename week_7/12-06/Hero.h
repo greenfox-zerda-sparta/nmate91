@@ -3,10 +3,12 @@
 #include "Character.h"
 
 class Hero : public Character {
+private:
+  int keycode = 2;
 public:
   Hero();
   ~Hero();
-  void draw_hero_direction(GameContext& context, int keycode);
-  void move_hero(GameContext& context, int keycode, std::vector<std::vector<int>>&);
+  void draw_hero_direction(GameContext& context);
+  void move_hero(GameContext& context, std::vector<std::vector<int>>& v);
 };
 
