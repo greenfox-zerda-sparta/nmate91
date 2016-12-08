@@ -4,8 +4,8 @@
 
 class Boss : public Character {
 public:
-  Boss();
+  Boss(Map*);
   ~Boss();
-  void draw_boss(GameContext& context, std::vector<std::vector<int>>& v);
+  void draw_boss(GameContext& context, Map*);
 };
 

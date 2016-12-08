@@ -1,11 +1,10 @@
 #pragma once
 #include "Character.h"
 
-
 class Skeleton : public Character {
 public:
-  Skeleton();
+  Skeleton(Map*);
   ~Skeleton();
-  void draw_skeleton(GameContext&, std::vector<std::vector<int>>& v);
+  void draw_skeleton(GameContext&, Map*);
 };
 

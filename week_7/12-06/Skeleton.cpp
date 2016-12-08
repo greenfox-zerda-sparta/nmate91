@@ -1,30 +1,30 @@
 #include "Skeleton.h"
 
-Skeleton::Skeleton() {
+Skeleton::Skeleton(Map* map) {
   hp = 50;
   sp = 4;
   dp = 3;
+  end:
+  int i = rand() % 9 + 1;
+  int j = rand() % 9 + 1;
+  if (map->is_floor(i, j)) {
+    x = i * 72;
+    y = j * 72;
+    map->set_map(i, j, 2);
+  }
+  else {
+    goto end;
+  }
 }
 
 Skeleton::~Skeleton() {
 }
 
-void Skeleton::draw_skeleton(GameContext& context, std::vector<std::vector<int>>& v) {
+void Skeleton::draw_skeleton(GameContext& context, Map* map) {
   if (this->hp > 0) {
-    for (int i = 5; i < v.size(); i++) {
-      for (int j = 5; j < v[i].size(); j++) {
-        if (v[i][j] == 1) {
-          x = j * 72;
-          y = i * 72;
-          v[i][j] = 2;
-          goto end1;
-        }
-      }
-    }
-    end1:
     context.draw_sprite("skeleton.bmp", x, y);
     return;
   }
-  v[this->x/72][this->y/72] = 1;
+  map->set_map(x/72, y/72, 1);
   return;
 }

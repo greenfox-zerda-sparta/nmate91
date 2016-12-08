@@ -2,7 +2,7 @@
 #include "GameEngine.h"
 #include "Map.h"
 
-class Character {
+class Character{
 protected:
   int x = 0;
   int y = 0;

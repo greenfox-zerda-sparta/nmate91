@@ -3,10 +3,10 @@
 MyGame::MyGame() {
   this->map = new Map;
   this->hero = new Hero;
-  this->skeleton1 = new Skeleton;
-  this->skeleton2 = new Skeleton;
-  this->skeleton3 = new Skeleton;
-  this->boss = new Boss;
+  this->skeleton1 = new Skeleton(map);
+  this->skeleton2 = new Skeleton(map);
+  this->skeleton3 = new Skeleton(map);
+  this->boss = new Boss(map);
   this->v = map->get_vector();
 }
 
@@ -32,10 +32,10 @@ void MyGame::init(GameContext& context) {
 
 void MyGame::render(GameContext& context) {
   map->draw_map(context);
-  boss->draw_boss(context, v);
-  skeleton1->draw_skeleton(context, v);
-  skeleton2->draw_skeleton(context, v);
-  skeleton3->draw_skeleton(context, v);
+  boss->draw_boss(context, map);
+  skeleton1->draw_skeleton(context, map);
+  skeleton2->draw_skeleton(context, map);
+  skeleton3->draw_skeleton(context, map);
   hero->draw_hero_direction(context);
   hero->move_hero(context, v);
   fight(context);
@@ -48,11 +48,11 @@ void MyGame::fight(GameContext& context) {
     skeleton1->suffer_attack(hero->get_attack());
     //skeleton1->defence_move(v);
   }
-  else if ((hero->get_x() == skeleton2->get_x()) && (hero->get_y() == skeleton2->get_y()) && context.was_key_pressed(SPACE)) {
+  if ((hero->get_x() == skeleton2->get_x()) && (hero->get_y() == skeleton2->get_y()) && context.was_key_pressed(SPACE)) {
     skeleton2->suffer_attack(hero->get_attack());
     //skeleton1->defence_move(v);
   }
-  else if ((hero->get_x() == skeleton3->get_x()) && (hero->get_y() == skeleton3->get_y()) && context.was_key_pressed(SPACE)) {
+  if ((hero->get_x() == skeleton3->get_x()) && (hero->get_y() == skeleton3->get_y()) && context.was_key_pressed(SPACE)) {
     skeleton3->suffer_attack(hero->get_attack());
     //skeleton1->defence_move(v);
   }

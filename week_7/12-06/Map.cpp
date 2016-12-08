@@ -48,3 +48,14 @@ void Map::draw_map(GameContext& context) {
     }
   }
 }
+
+bool Map::is_floor(int x, int y) {
+  if (v[x][y] == 1) {
+    return true;
+  }
+  return false;
+}
+
+void Map::set_map(int i, int j, int value) {
+  v[i][j] = value;
+}
