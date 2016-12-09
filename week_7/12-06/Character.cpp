@@ -29,25 +29,25 @@ int Character::get_attack() {
 
 
 void Character::defence_move(Map* map) {
-  if ((y - 72 > 0) && map->is_floor(x / 72, (y - 72) / 72)) {
+  if ((y - 72 > 0) && map->is_floor(x / 72, (y - 72) / 72) && map->is_monster(x / 72, (y - 72) / 72) == false) {
     map->set_map(x / 72, (y - 72) / 72, map_value);
     y = y - 72;
     map->set_map(x / 72, (y + 72) / 72, 1);
     return;
   }
-  else if ((x - 72 > 0) && map->is_floor((x - 72) / 72, y / 72)) {
+  else if ((x - 72 > 0) && map->is_floor((x - 72) / 72, y / 72) && map->is_monster((x - 72) / 72, y / 72) == false) {
     map->set_map((x - 72) / 72, y / 72, map_value);
     x = x - 72;
     map->set_map((x + 72) / 72, y / 72, 1);
     return;
   }
-  else if ((x + 72 < 720) && map->is_floor((x + 72) / 72, y / 72)) {
+  else if ((x + 72 < 720) && map->is_floor((x + 72) / 72, y / 72) && map->is_monster((x + 72) / 72, y / 72) == false) {
     map->set_map((x + 72) / 72, y / 72, map_value);
     x = x + 72;
     map->set_map((x - 72) / 72, y / 72, 1);
     return;
   }
-  else if ((y + 72 < 720) && map->is_floor(x / 72, (y + 72) / 72)) {
+  else if ((y + 72 < 720) && map->is_floor(x / 72, (y + 72) / 72) && map->is_monster(x / 72, (y + 72) / 72) == false) {
     map->set_map(x / 72, (y + 72) / 72, map_value);
     y = y + 72;
     map->set_map(x / 72, (y - 72) / 72, 1);

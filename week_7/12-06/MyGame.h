@@ -14,7 +14,6 @@ private:
   Skeleton* skeleton2;
   Skeleton* skeleton3;
   Boss* boss;
-  std::vector<std::vector<int>> v;
   int keycode = 2;
 public:
   MyGame();

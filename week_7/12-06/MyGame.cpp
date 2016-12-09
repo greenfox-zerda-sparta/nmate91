@@ -7,7 +7,6 @@ MyGame::MyGame() {
   this->skeleton2 = new Skeleton(map);
   this->skeleton3 = new Skeleton(map);
   this->boss = new Boss(map);
-  this->v = map->get_vector();
 }
 
 MyGame::~MyGame() {
