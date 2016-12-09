@@ -27,21 +27,30 @@ int Character::get_attack() {
   return sp;
 }
 
-void Character::defence_move(std::vector<std::vector<int>>& v) {
-  if ((y - 72 > 0) && v[x][y - 72] == 1) {
+
+void Character::defence_move(Map* map) {
+  if ((y - 72 > 0) && map->is_floor(x / 72, (y - 72) / 72)) {
+    map->set_map(x / 72, (y - 72) / 72, map_value);
     y = y - 72;
+    map->set_map(x / 72, (y + 72) / 72, 1);
     return;
   }
-  else if ((x - 72 > 0) && v[x - 72][y] == 1) {
+  else if ((x - 72 > 0) && map->is_floor((x - 72) / 72, y / 72)) {
+    map->set_map((x - 72) / 72, y / 72, map_value);
     x = x - 72;
+    map->set_map((x + 72) / 72, y / 72, 1);
     return;
   }
-  else if ((y + 72 < 720) && v[x][y + 72] == 1) {
-    y = y + 72;
-    return;
-  }
-  else if ((x + 72 < 720) && v[x + 72][y] == 1) {
+  else if ((x + 72 < 720) && map->is_floor((x + 72) / 72, y / 72)) {
+    map->set_map((x + 72) / 72, y / 72, map_value);
     x = x + 72;
+    map->set_map((x - 72) / 72, y / 72, 1);
+    return;
+  }
+  else if ((y + 72 < 720) && map->is_floor(x / 72, (y + 72) / 72)) {
+    map->set_map(x / 72, (y + 72) / 72, map_value);
+    y = y + 72;
+    map->set_map(x / 72, (y - 72) / 72, 1);
     return;
   }
   return;

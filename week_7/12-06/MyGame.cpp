@@ -46,19 +46,23 @@ void MyGame::fight(GameContext& context) {
   if ((hero->get_x() == skeleton1->get_x()) && (hero->get_y() == skeleton1->get_y()) && context.was_key_pressed(SPACE))
   {
     skeleton1->suffer_attack(hero->get_attack());
-    //skeleton1->defence_move(v);
+    skeleton1->defence_move(map);
+    context.render();
   }
   if ((hero->get_x() == skeleton2->get_x()) && (hero->get_y() == skeleton2->get_y()) && context.was_key_pressed(SPACE)) {
     skeleton2->suffer_attack(hero->get_attack());
-    //skeleton1->defence_move(v);
+    skeleton2->defence_move(map);
+    context.render();
   }
   if ((hero->get_x() == skeleton3->get_x()) && (hero->get_y() == skeleton3->get_y()) && context.was_key_pressed(SPACE)) {
     skeleton3->suffer_attack(hero->get_attack());
-    //skeleton1->defence_move(v);
+    skeleton3->defence_move(map);
+    context.render();
   }
   if ((hero->get_x() == boss->get_x()) && (hero->get_y() == boss->get_y()) && context.was_key_pressed(SPACE)) {
     boss->suffer_attack(hero->get_attack());
-    //skeleton1->defence_move(v);
+    boss->defence_move(map);
+    context.render();
   }
   return;
 }

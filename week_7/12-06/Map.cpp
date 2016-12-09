@@ -1,7 +1,6 @@
 #include "Map.h"
 
 Map::Map() {
-  srand(time(NULL));
   std::vector<std::vector<int>> new_v(10, std::vector<int>(10, 1));
   this->v = new_v;
   int random_number = 0;

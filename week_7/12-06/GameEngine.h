@@ -9,6 +9,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <time.h>
 
 #define ARROW_UP 0
 #define ARROW_RIGHT 1

@@ -4,13 +4,14 @@ Skeleton::Skeleton(Map* map) {
   hp = 50;
   sp = 4;
   dp = 3;
+  int map_value = 2;
   end:
   int i = rand() % 9 + 1;
   int j = rand() % 9 + 1;
   if (map->is_floor(i, j)) {
     x = i * 72;
     y = j * 72;
-    map->set_map(i, j, 2);
+    map->set_map(i, j, map_value);
   }
   else {
     goto end;

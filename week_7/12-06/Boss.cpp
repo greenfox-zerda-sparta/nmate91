@@ -4,13 +4,14 @@ Boss::Boss(Map* map) {
   hp = 50;
   sp = 8;
   dp = 6;
+  map_value = 3;
   end:
   int i = rand() % 9 + 1;
   int j = rand() % 9 + 1;
   if (map->is_floor(i, j)) {
     x = i * 72;
     y = j * 72;
-    map->set_map(i, j, 3);
+    map->set_map(i, j, map_value);
   }
   else {
     goto end;

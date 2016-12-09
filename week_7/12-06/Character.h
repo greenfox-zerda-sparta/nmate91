@@ -9,6 +9,7 @@ protected:
   int hp = 0;
   int sp = 0;
   int dp = 0;
+  int map_value = 1;
 public:
   Character();
   ~Character();
@@ -16,6 +17,6 @@ public:
   int get_x();
   int get_y();
   int get_attack();
-  void defence_move(std::vector<std::vector<int>>& v);
+  void defence_move(Map*);
 };
 
