@@ -26,13 +26,13 @@ void Hero::draw_hero_direction(GameContext& context) {
   }
 }
 
-void Hero::move_hero(GameContext& context, std::vector<std::vector<int>>& v) {
+void Hero::move_hero(GameContext& context, Map* map) {
   if (context.was_key_pressed(ARROW_DOWN)) {
     y = y + 72;
     if (y > (720 - 72)) {
       y = (720 - 72);
     }
-    else if (v[x / 72][y / 72] == 0) {
+    else if (map->is_monster_or_floor(x / 72, y / 72) == false) {
       y = y - 72;
     }
     keycode = 2;
@@ -42,7 +42,7 @@ void Hero::move_hero(GameContext& context, std::vector<std::vector<int>>& v) {
     if (y < 0) {
       y = 0;
     }
-    else if (v[x / 72][y / 72] == 0) {
+    else if (map->is_monster_or_floor(x / 72, y / 72) == false) {
       y = y + 72;
     }
     keycode = 0;
@@ -52,7 +52,7 @@ void Hero::move_hero(GameContext& context, std::vector<std::vector<int>>& v) {
     if (x < 0) {
       x = 0;
     }
-    else if (v[x / 72][y / 72] == 0) {
+    else if (map->is_monster_or_floor(x / 72, y / 72) == false) {
       x = x + 72;
     }
     keycode = 3;
@@ -62,7 +62,7 @@ void Hero::move_hero(GameContext& context, std::vector<std::vector<int>>& v) {
     if (x >(720 - 72)) {
       x = (720 - 72);
     }
-    else if (v[x / 72][y / 72] == 0) {
+    else if (map->is_monster_or_floor(x / 72, y / 72) == false) {
       x = x - 72;
     }
     keycode = 1;

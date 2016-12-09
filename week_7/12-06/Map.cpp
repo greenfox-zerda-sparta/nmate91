@@ -55,6 +55,20 @@ bool Map::is_floor(int x, int y) {
   return false;
 }
 
+bool Map::is_monster(int x, int y) {
+  if ((v[x][y] == 2) || (v[x][y] == 3)) {
+    return true;
+  }
+  return false;
+}
+
+bool Map::is_monster_or_floor(int x, int y) {
+  if ((v[x][y] == 1) || (v[x][y] == 2) || (v[x][y] == 3)) {
+    return true;
+  }
+  return false;
+}
+
 void Map::set_map(int i, int j, int value) {
   v[i][j] = value;
 }

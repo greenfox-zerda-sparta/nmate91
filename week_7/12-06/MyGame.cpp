@@ -37,7 +37,7 @@ void MyGame::render(GameContext& context) {
   skeleton2->draw_skeleton(context, map);
   skeleton3->draw_skeleton(context, map);
   hero->draw_hero_direction(context);
-  hero->move_hero(context, v);
+  hero->move_hero(context, map);
   fight(context);
   context.render();
 }
