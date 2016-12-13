@@ -17,6 +17,8 @@ using namespace std;
 
 string read_text(map<string, int>& my_map);
 void fill_map(map<string, int>& my_map, string word);
+string delete_special_char(string);
+bool is_last_char_valid(string word);
 
 int main() {
   map<string, int> my_map;
@@ -29,10 +31,12 @@ int main() {
 
 string read_text(map<string, int>& my_map) {
   string word = "";
+  string temp = "";
   ifstream my_file;
   my_file.open("alice.txt");
   while (my_file >> word) {
-    fill_map(my_map, word);
+    temp = delete_special_char(word);
+    fill_map(my_map, temp);
   }
   my_file.close();
   return word;
@@ -46,4 +50,22 @@ void fill_map(map<string, int>& my_map, string word) {
     my_map[word] = 1;
   }
   return;
+}
+
+string delete_special_char(string word) {
+  if (is_last_char_valid(word)) {
+    return word;
+  }
+  else word.pop_back();
+  return word;
+}
+
+bool is_last_char_valid(string word) {
+  string valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  for (int i = 0; i < valid_chars.length(); i++) {
+    if (word[word.length() - 1] == valid_chars[i]) {
+      return true;
+    }
+  }
+  return false;
 }
