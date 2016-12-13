@@ -12,8 +12,12 @@ int main() {
   m["three"] = 3;
   m["four"] = 4;
   m["five"] = 5;
-  int lol = 1;
+
   // Print all the keys and values of the map
+
+  for (map<string, int>::iterator it = m.begin(); it != m.end(); it++) {
+    cout << it->first << ": " << it->second << endl;
+  }
 
   return 0;
 }
