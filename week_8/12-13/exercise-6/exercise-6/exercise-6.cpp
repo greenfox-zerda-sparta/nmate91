@@ -18,13 +18,13 @@ using namespace std;
 string read_text(map<string, int>& my_map);
 void fill_map(map<string, int>& my_map, string word);
 string delete_special_char(string);
-bool is_last_char_valid(string word);
+bool is_char_invalid(char);
 
 int main() {
   map<string, int> my_map;
   string text = read_text(my_map);
   for (map<string, int>::iterator it = my_map.begin(); it != my_map.end(); it++) {
-    cout << it->first << " lofasz " << it->second << endl;
+    cout << it->first << " || " << it->second << endl;
   }
   return 0;
 }
@@ -53,19 +53,44 @@ void fill_map(map<string, int>& my_map, string word) {
 }
 
 string delete_special_char(string word) {
-  if (is_last_char_valid(word)) {
-    return word;
+  string temp;
+  for (int i = 0; i < word.length() - 1; i++) {
+    if (is_char_invalid(word[i])) {
+      word.erase(word.begin() + i);
+      temp = word;
+      return delete_special_char(temp);
+    }
   }
-  else word.pop_back();
   return word;
 }
 
-bool is_last_char_valid(string word) {
-  string valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-  for (int i = 0; i < valid_chars.length(); i++) {
-    if (word[word.length() - 1] == valid_chars[i]) {
-      return true;
-    }
+bool is_char_invalid(char letter) {
+  if (letter == ',') {
+    return true;
+  }
+  else if (letter == '.') {
+    return true;
+  }
+  else if (letter == '!') {
+    return true;
+  }
+  else if (letter == ';') {
+    return true;
+  }
+  else if (letter == ';') {
+    return true;
+  }
+  else if (letter == '?') {
+    return true;
+  }
+  else if (letter == '/') {
+    return true;
+  }
+  else if (letter == '(') {
+    return true;
+  }
+  else if (letter == ')') {
+    return true;
   }
   return false;
 }
