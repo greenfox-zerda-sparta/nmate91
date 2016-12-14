@@ -21,7 +21,7 @@ Color::Color(Color& other) {
 
 Color::Color(std::string hex_code) {
   try {
-    if (hex_code.length() != 6 || is_hex_code_invalid(hex_code)) {
+    if (hex_code.length() != 7 || is_hex_code_invalid(hex_code)) {
       throw wrong_hexa;
     }
     std::cout << "Your hexa is: " << hex_code << std::endl;

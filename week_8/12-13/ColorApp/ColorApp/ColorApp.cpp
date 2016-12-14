@@ -6,7 +6,7 @@
 
 
 int main() {
-  std::string majom = "kristof";
+  std::string majom = "#000000";
   Color string_color(majom);
   return 0;
 }
