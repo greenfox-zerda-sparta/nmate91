@@ -2,9 +2,12 @@
 //
 
 #include "stdafx.h"
+#include "Color.h"
 
 
 int main() {
+  std::string majom = "kristof";
+  Color string_color(majom);
   return 0;
 }
 
