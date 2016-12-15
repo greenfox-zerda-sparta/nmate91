@@ -19,7 +19,7 @@ Color::Color(Color& other) {
   blue = other.blue;
 }
 
-Color::Color(std::string hex_code) {
+Color::Color(std::string& hex_code) {
   try {
     if (hex_code.length() != 7 || is_hex_code_invalid(hex_code)) {
       throw wrong_hexa;
