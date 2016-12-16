@@ -6,15 +6,18 @@ void draw_something(draw& d, SDL_Renderer* renderer, int x_i, int y_i, int x, in
   if (x_i >= 2 && y_i >= 2) {
     d.MoveTo(x + x_i / 3, y);
     d.DrawTo(renderer, x + x_i / 3, y + y_i);
+    draw_something(d, renderer, x_i / 3, y_i / 3, x + x_i / 3, y);
+
     d.MoveTo(x + 2 * x_i / 3, y);
     d.DrawTo(renderer, x + 2 * x_i / 3, y + y_i);
+    draw_something(d, renderer, x_i / 3, y_i / 3, x + x_i / 3, y + 2 * y_i / 3);
+
     d.MoveTo(x, y + y_i / 3);
-    d.DrawTo(renderer, x + x_i, y + y_i / 3);
+    d.DrawTo(renderer, x + x_i, y + y_i / 3);    
+    draw_something(d, renderer, x_i / 3, y_i / 3, x + 2 * x_i / 3, y + y_i / 3);
+
     d.MoveTo(x, y + 2 * y_i / 3);
     d.DrawTo(renderer, x + x_i, y + 2 * y_i / 3);
-    draw_something(d, renderer, x_i / 3, y_i / 3, x + x_i / 3, y);
-    draw_something(d, renderer, x_i / 3, y_i / 3, x + x_i / 3, y + 2 * y_i / 3);
-    draw_something(d, renderer, x_i / 3, y_i / 3, x + 2 * x_i / 3, y + y_i / 3);
     draw_something(d, renderer, x_i / 3, y_i / 3, x, y + y_i / 3);
   } 
   return;
