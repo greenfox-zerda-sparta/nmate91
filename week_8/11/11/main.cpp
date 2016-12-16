@@ -9,7 +9,6 @@ void draw_triangle(draw& d, SDL_Renderer* renderer, int line_lenght) {
       d.TurnTo(120);
       draw_triangle(d, renderer, line_lenght / 2);
     }
-    draw_triangle(d, renderer, line_lenght / 2);
   }
   return;
 }
