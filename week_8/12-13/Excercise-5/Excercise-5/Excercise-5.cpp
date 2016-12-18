@@ -20,7 +20,7 @@ using namespace std;
 void calculate_santa(vector<string>& my_vector, vector<string>& my_vector2);
 void print_map(vector<string>&, vector<string>&);
 bool is_shuffle_right(vector<string>& my_vector, vector<string>& my_vector2);
-void make_shuffle(vector<string>& my_vector);
+void make_shuffle(vector<string>& my_vector, vector<string>& my_vector2);
 
 int main() {
   vector<string> my_vector;
@@ -35,14 +35,7 @@ void calculate_santa(vector<string>& my_vector, vector<string>& my_vector2) {
   cout << "Please enter names! In case, you type 'q', the computer makes santa pairs!" << endl;
   cin >> text;
   if (text == "q") {
-    begin:
-    make_shuffle(my_vector);
-    if (is_shuffle_right(my_vector, my_vector2)) {
-      print_map(my_vector, my_vector2);
-    }
-    else {
-      goto begin;
-    }
+    make_shuffle(my_vector, my_vector2);
     return;
   }
   my_vector.push_back(text);
@@ -69,9 +62,11 @@ bool is_shuffle_right(vector<string>& my_vector, vector<string>& my_vector2) {
   return true;
 }
 
-void make_shuffle(vector<string>& my_vector) {
+void make_shuffle(vector<string>& my_vector, vector<string>& my_vector2) {
   random_shuffle(my_vector.begin(), my_vector.end());
-  return;
+  if (is_shuffle_right(my_vector, my_vector2)) {
+    print_map(my_vector, my_vector2);
+    return;
+  }
+  make_shuffle(my_vector, my_vector2);
 }
-//vector<string>::iterator it = my_vector.begin(); it != my_vector.end(); it = it + 2
-//random_shuffle(my_vector.begin(), my_vector.end());
