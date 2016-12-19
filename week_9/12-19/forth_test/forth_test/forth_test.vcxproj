@@ -140,6 +140,7 @@
     <ClInclude Include="catch.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Test.h" />
     <ClInclude Include="WordToolbox.h" />
   </ItemGroup>
   <ItemGroup>
