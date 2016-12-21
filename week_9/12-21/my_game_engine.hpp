@@ -14,9 +14,11 @@ class Context {
 private:
   SDL_Window* screen;
 public:
-  Context(unsigned int width, unsigned int height);
+  Context(unsigned int, unsigned int);
   ~Context();
   void display_context();
+  void set_background(unsigned int, unsigned int, unsigned int);
+  void load_file(string);
 
 };
 
@@ -32,6 +34,7 @@ void Context::display_context() {
   if(screen == NULL) {
     cout << "There was error init." << endl << SDL_GetError();
   }
+  set_background(255, 78, 145);
   bool running = true;
   SDL_Event event;
   while (running) {
@@ -44,5 +47,20 @@ void Context::display_context() {
   }
   return;
 }
+
+void Context::set_background(unsigned int r, unsigned int g, unsigned int b) {
+  SDL_Surface *surface = SDL_GetWindowSurface(screen);
+  Uint32 white = SDL_MapRGB(surface->format, r, g, b);
+  SDL_FillRect(surface, NULL, white);
+  SDL_UpdateWindowSurface(screen);
+  return;
+}
+
+/*void Context::load_file(string name) {
+  SDL_Surface* result = SDL_LoadBMP(name.c_str());
+  SDL_SetColorKey(result, SDL_TRUE, SDL_MapRGB(SDL_AllocFormat(SDL_GetWindowPixelFormat(screen)), 0xFF, 0, 0xFF));
+  sprites[name] = SDL_CreateTextureFromSurface(renderer, result);
+  SDL_FreeSurface(result);
+}*/
 
 #endif
