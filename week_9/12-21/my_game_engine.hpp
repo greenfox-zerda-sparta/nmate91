@@ -4,6 +4,7 @@
 #define fps 30
 
 #include <SDL2/SDL.h>
+#include "sprite.hpp"
 
 #include <iostream>
 #include <string>
@@ -11,6 +12,8 @@
 #include <time.h>
 
 using namespace std;
+
+//Class context:
 
 class Context {
 private:
@@ -21,8 +24,11 @@ public:
   void display_context();
   void set_background(unsigned int, unsigned int, unsigned int);
   void load_file(string);
+  void reduce_fps(Uint32&);
 
 };
+
+//Context definitions
 
 Context::Context(unsigned int width, unsigned int height) {
   screen = SDL_CreateWindow("Gomoku", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_RESIZABLE);
@@ -47,9 +53,7 @@ void Context::display_context() {
         running = false;
         break;
       }
-    if ((1000 / fps) > SDL_GetTicks() - starting_tick) {
-      SDL_Delay( 1000 / fps - (SDL_GetTicks() - starting_tick));
-    }
+    reduce_fps(starting_tick);
     }
   }
   return;
@@ -58,8 +62,18 @@ void Context::display_context() {
 void Context::set_background(unsigned int r, unsigned int g, unsigned int b) {
   SDL_Surface *surface = SDL_GetWindowSurface(screen);
   Uint32 white = SDL_MapRGB(surface->format, r, g, b);
+  Uint32 red = SDL_MapRGB(surface->format, 255, 0, 0);
   SDL_FillRect(surface, NULL, white);
+  Sprite object(red, 40, 40, 40, 40);
+  object.draw(surface);
   SDL_UpdateWindowSurface(screen);
+  return;
+}
+
+void Context::reduce_fps(Uint32& starting_tick) {
+  if ((1000 / fps) > SDL_GetTicks() - starting_tick) {
+      SDL_Delay( 1000 / fps - (SDL_GetTicks() - starting_tick));
+  }
   return;
 }
 
