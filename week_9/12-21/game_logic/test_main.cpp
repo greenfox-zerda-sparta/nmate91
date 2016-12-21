@@ -42,4 +42,11 @@ TEST_CASE("player 1 set is not overwritten by player 2, and not out of range") {
   REQUIRE(board6.player_1_sets_cell(20, 5) == board6.get_vector());
   REQUIRE(board6.player_2_sets_cell(5, 20) == board6.get_vector());
 }
+
+TEST_CASE("Get the marker type") {
+  Board board7;
+  REQUIRE(board7.get_marker_type(5, 5) == EMPTY);
+}
+
+
 #endif
