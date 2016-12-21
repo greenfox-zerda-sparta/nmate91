@@ -10,17 +10,39 @@ vector<vector<unsigned int>> Board::get_vector() {
 }
 
 vector<vector<unsigned int>> Board::player_1_sets_cell(unsigned int i, unsigned int j) {
-  this->board_vector[i][j] = 1;
+  if (is_out_of_range(i, j) == false) {
+    return board_vector;
+  }
+  if(is_cell_empty(i, j)) {
+    this->board_vector[i][j] = 1;
+    return board_vector;
+  }
   return board_vector;
 }
 
 vector<vector<unsigned int>> Board::player_2_sets_cell(unsigned int i, unsigned int j) {
-  this->board_vector[i][j] = 2;
+  if (is_out_of_range(i, j) == false) {
+   return board_vector;
+  }
+  if(is_cell_empty(i, j)) {
+    this->board_vector[i][j] = 2;
+    return board_vector;
+  }
   return board_vector;
 }
 
 bool Board::is_cell_empty(unsigned int i, unsigned int j) {
   if(board_vector[i][j] != 0) {
+    return false;
+  }
+  return true;
+}
+
+bool Board::is_out_of_range(unsigned int i, unsigned int j) {
+  if (i >= this->board_vector.size()) {
+    return false;
+  }
+  else if (j >= this->board_vector.size()) {
     return false;
   }
   return true;

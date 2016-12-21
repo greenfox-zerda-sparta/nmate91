@@ -31,4 +31,15 @@ TEST_CASE("is set valid?") {
   REQUIRE(!board3.is_cell_empty(5, 5));
 }
 
+TEST_CASE("is out of matrix range") {
+  Board board5;
+  REQUIRE(board5.is_out_of_range(20, 5)); 
+  REQUIRE(board5.is_out_of_range(5, 20));
+}
+
+TEST_CASE("player 1 set is not overwritten by player 2, and not out of range") {
+  Board board6;
+  REQUIRE(board6.player_1_sets_cell(20, 5) == board6.get_vector());
+  REQUIRE(board6.player_2_sets_cell(5, 20) == board6.get_vector());
+}
 #endif

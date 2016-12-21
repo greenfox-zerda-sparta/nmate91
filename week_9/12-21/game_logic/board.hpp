@@ -15,6 +15,7 @@ public:
   vector<vector<unsigned int>> player_1_sets_cell(unsigned int, unsigned int);
   vector<vector<unsigned int>> player_2_sets_cell(unsigned int, unsigned int);
   bool is_cell_empty(unsigned int, unsigned int);
+  bool is_out_of_range(unsigned int i, unsigned int j);
 };
 
 #endif
