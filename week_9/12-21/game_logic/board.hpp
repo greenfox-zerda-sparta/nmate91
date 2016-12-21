@@ -12,8 +12,8 @@ private:
 public:
   Board();
   vector<vector<unsigned int>> get_vector();
-  unsigned int player_1_sets_cell();
-  unsigned int player_2_sets_cell();
+  vector<vector<unsigned int>> player_1_sets_cell(unsigned int, unsigned int);
+  vector<vector<unsigned int>> player_2_sets_cell(unsigned int, unsigned int);
 };
 
 #endif
