@@ -1,15 +1,23 @@
 #include <iostream>
-#include<SDL2/SDL.h>
+#include "my_game_engine.hpp"
 
 using namespace std;
 
 int main(int argc, char **argv) {
   SDL_Init(SDL_INIT_EVERYTHING);
-  SDL_Window *window;
-  window = SDL_CreateWindow("Subscribe!", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_RESIZABLE);
+  Context context(640, 480);
   if(window == NULL) {
     cout << "There was error init." << endl << SDL_GetError();
   }
-  SDL_Delay(5000);
-  SDL_DestroyWindow(window);
+  bool running = true;
+  SDL_Event event;
+  while (running) {
+    while (SDL_PollEvent(&event)) {
+      if(event.type == SDL_QUIT) {
+        running = false;
+        break;
+      }
+    }
+  }
+  return 0;
 }
