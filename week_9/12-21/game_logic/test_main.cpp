@@ -25,5 +25,10 @@ TEST_CASE("Set vector2 is cool") {
   REQUIRE(board2.get_vector() == board2.player_2_sets_cell(5, 5));
 }
 
+TEST_CASE("is set valid?") {
+  Board board3;
+  board3.player_1_sets_cell(5, 5);
+  REQUIRE(!board3.is_cell_empty(5, 5));
+}
 
 #endif

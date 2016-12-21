@@ -19,3 +19,9 @@ vector<vector<unsigned int>> Board::player_2_sets_cell(unsigned int i, unsigned 
   return board_vector;
 }
 
+bool Board::is_cell_empty(unsigned int i, unsigned int j) {
+  if(board_vector[i][j] != 0) {
+    return false;
+  }
+  return true;
+}
