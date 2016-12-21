@@ -1,6 +1,8 @@
 #ifndef MY_GAME_ENGINE_H
 #define MY_GAME_ENGINE_H
 
+#define fps 30
+
 #include <SDL2/SDL.h>
 
 #include <iostream>
@@ -34,15 +36,20 @@ void Context::display_context() {
   if(screen == NULL) {
     cout << "There was error init." << endl << SDL_GetError();
   }
+  Uint32 starting_tick;
   set_background(255, 78, 145);
   bool running = true;
   SDL_Event event;
   while (running) {
+    starting_tick = SDL_GetTicks();
     while (SDL_PollEvent(&event)) {
       if(event.type == SDL_QUIT) {
         running = false;
         break;
       }
+    if ((1000 / fps) > SDL_GetTicks() - starting_tick) {
+      SDL_Delay( 1000 / fps - (SDL_GetTicks() - starting_tick));
+    }
     }
   }
   return;
