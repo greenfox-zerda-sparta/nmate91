@@ -11,7 +11,7 @@ vector<vector<Markers>> Board::get_vector() {
 }
 
 vector<vector<Markers>> Board::player_1_sets_cell(unsigned int i, unsigned int j) {
-  if (is_out_of_range(i, j) == false) {
+  if (is_out_of_range(i, j)) {
     return board_vector;
   }
   if(is_cell_empty(i, j)) {
@@ -22,7 +22,7 @@ vector<vector<Markers>> Board::player_1_sets_cell(unsigned int i, unsigned int j
 }
 
 vector<vector<Markers>> Board::player_2_sets_cell(unsigned int i, unsigned int j) {
-  if (is_out_of_range(i, j) == false) {
+  if (is_out_of_range(i, j)) {
    return board_vector;
   }
   if(is_cell_empty(i, j)) {
@@ -41,14 +41,45 @@ bool Board::is_cell_empty(unsigned int i, unsigned int j) {
 
 bool Board::is_out_of_range(unsigned int i, unsigned int j) {
   if (i >= this->board_vector.size()) {
-    return false;
+    return true;
   }
   else if (j >= this->board_vector.size()) {
-    return false;
+    return true;
   }
-  return true;
+  return false;
 }
 
 Markers Board::get_marker_type(unsigned int i, unsigned int j) {
+  if(is_out_of_range(i, j)) {
+    return OUT_OF_RANGE;
+  }
   return this->board_vector[i][j];
-}  //thing about get next vertical, horizontal, diagonal
+} 
+
+bool Board::is_a_player_on_cell(unsigned int i, unsigned int j) {
+  if(get_marker_type(i, j) == PLAYER_1) {
+    return true;
+  }
+  else if(get_marker_type(i, j) == PLAYER_2) {
+    return true;
+  }
+  return false;
+}
+
+bool Board::are_five_in_a_row(unsigned int i, unsigned int j) {
+  if(is_a_player_on_cell(i, j)) { 
+    const unsigned int base_i = i;
+    unsigned int counter = 0;
+    Markers this_marker = get_marker_type(i, j);
+    while(i != base_i + 5) {
+      if(get_marker_type(i, j) == this_marker) {
+        counter++;
+      }
+      i++;
+    }
+    if(counter == 5) {
+      return true;
+    }
+  }
+  return false;
+}

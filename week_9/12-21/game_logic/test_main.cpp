@@ -45,8 +45,22 @@ TEST_CASE("player 1 set is not overwritten by player 2, and not out of range") {
 
 TEST_CASE("Get the marker type") {
   Board board7;
-  REQUIRE(board7.get_marker_type(5, 5) == EMPTY);
+  board7.player_1_sets_cell(5, 5);
+  REQUIRE(board7.get_marker_type(5, 5) == PLAYER_1);
+  REQUIRE(board7.get_marker_type(3, 22) == OUT_OF_RANGE);
 }
+
+TEST_CASE("check rows") {
+  Board board8;
+  board8.player_1_sets_cell(5, 5);
+  board8.player_1_sets_cell(6, 5);
+  board8.player_1_sets_cell(7, 5);
+  board8.player_1_sets_cell(8, 5); 
+  board8.player_1_sets_cell(9, 5);
+  REQUIRE(board8.get_marker_type(5, 5) == PLAYER_1);
+  REQUIRE(board8.are_five_in_a_row(5, 5) == true);
+}
+
 
 
 #endif
