@@ -1,4 +1,4 @@
 
 all:
-	g++ -std=c++11 -DTEST *.cpp -o gomoku.o
+	g++ -std=c++11 *.cpp -w -lSDL2 -o gomoku.o
 
