@@ -88,7 +88,6 @@ bool Board::are_five_in_a_row(Markers marker, unsigned int i, unsigned int j) {
     return false;
   }
   if (!is_a_player_on_cell(i, j)) {
-    counter = 1;
     return false;
   }
   if (is_given_marker_type(marker, i, j)) {
@@ -107,7 +106,6 @@ bool Board::are_five_in_a_col(Markers marker, unsigned int i, unsigned int j) {
     return false;
   }
   if (!is_a_player_on_cell(i, j)) {
-    counter = 1;
     return false;
   }
   if (is_given_marker_type(marker, i, j)) {
@@ -127,7 +125,6 @@ bool Board::are_five_in_a_diagonal(Markers marker, unsigned int i, unsigned int 
   }
   if (!is_a_player_on_cell(i, j)) {
     counter = 1;
-    return false;
   }
   if (is_given_marker_type(marker, i, j)) {
     counter++;
@@ -140,18 +137,14 @@ bool Board::are_five_in_a_diagonal(Markers marker, unsigned int i, unsigned int 
 }
 
 bool Board::is_won(Markers player) {
-  for (int i = 0; i < board_vector.size(); i++) {
-    for (int j = 0; j < board_vector[i].size(); j++) {
-      if (are_five_in_a_row(player, i, j)) {
-        return true;
-      }
-      if (are_five_in_a_col(player, i, j)) {
-        return true;
-      }
-      if (are_five_in_a_diagonal(player, i, j)) {
-        return true;
-      }     
-    }
+  if (are_five_in_a_row(player, 0, 0)) {
+    return true;
+  }
+  if (are_five_in_a_col(player, 0, 0)) {
+    return true;
+  }
+  if (are_five_in_a_diagonal(player, 0, 0)) {
+    return true;
   }
   return false;
 }
