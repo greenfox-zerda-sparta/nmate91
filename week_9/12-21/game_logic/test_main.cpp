@@ -58,9 +58,14 @@ TEST_CASE("check rows") {
   board8.player_1_sets_cell(8, 5); 
   board8.player_1_sets_cell(9, 5);
   REQUIRE(board8.get_marker_type(5, 5) == PLAYER_1);
-  REQUIRE(board8.are_five_in_a_row(5, 5) == true);
+  REQUIRE(board8.are_five_in_a_row(PLAYER_1, 5, 5) == true);
+  REQUIRE(board8.are_five_in_a_row(PLAYER_1, 5, 5) == true);
 }
 
-
+TEST_CASE("is given marker type check") {
+  Board board9;
+  board9.player_1_sets_cell(5, 5);
+  board9.is_given_marker_type(PLAYER_1, 5, 5);
+}
 
 #endif

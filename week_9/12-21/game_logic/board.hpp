@@ -8,10 +8,12 @@ using namespace std;
 
 enum Markers {EMPTY, PLAYER_1, PLAYER_2, OUT_OF_RANGE};
 
+typedef Markers (*call_function)(unsigned int args);
+
 class Board {
 private:
   vector<vector<Markers>> board_vector;
-  Markers current_marker_type;
+  unsigned int counter;
 public:
   Board();
   vector<vector<Markers>> get_vector();
@@ -21,7 +23,8 @@ public:
   bool is_out_of_range(unsigned int, unsigned int);
   Markers get_marker_type(unsigned int, unsigned int);
   bool is_a_player_on_cell(unsigned int, unsigned int);
-  bool are_five_in_a_row(unsigned int, unsigned int);
+  bool is_given_marker_type(Markers, unsigned int, unsigned int);
+  bool are_five_in_a_row(Markers, unsigned int, unsigned int);
 };
 
 #endif
