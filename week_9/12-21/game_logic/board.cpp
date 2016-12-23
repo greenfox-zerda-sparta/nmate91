@@ -11,22 +11,6 @@ vector<vector<Markers>> Board::get_vector() {
   return this->board_vector;
 }
 
-void Board::draw_board(GameContext& context) {
-  for (int i = 0; i < board_vector.size(); i++) {
-    for (int j = 0; j < board_vector[i].size(); j++) {
-      if (board_vector[i][j] == EMPTY) {
-        context.draw_sprite("0.bmp", i * 20, j * 20);
-      }
-      else if (board_vector[i][j] == PLAYER_1) {
-        context.draw_sprite("1.bmp", i * 20, j * 20);
-      }
-      else if (board_vector[i][j] == PLAYER_2) {
-        context.draw_sprite("2.bmp", i* 20, j *20);
-      }
-    }
-  }
-}
-
 void Board::who_is_next(unsigned int i, unsigned int j) {
   if (next == false) {
     player_1_sets_cell(i, j);

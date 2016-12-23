@@ -26,6 +26,22 @@ void MyGame::render(GameContext& context) {
     delete board;
     this->board = new Board;
   }
-  board->draw_board(context);
+  draw_board(context);
   context.render(); 
+}
+
+void MyGame::draw_board(GameContext& context) {
+  for (int i = 0; i < board->get_vector().size(); i++) {
+    for (int j = 0; j < board->get_vector().size(); j++) {
+      if (board->get_vector()[i][j] == EMPTY) {
+        context.draw_sprite("0.bmp", i * 20, j * 20);
+      }
+      else if (board->get_vector()[i][j] == PLAYER_1) {
+        context.draw_sprite("1.bmp", i * 20, j * 20);
+      }
+      else if (board->get_vector()[i][j] == PLAYER_2) {
+        context.draw_sprite("2.bmp", i* 20, j *20);
+      }
+    }
+  }
 }

@@ -12,8 +12,9 @@ private:
 public:
   MyGame();
   ~MyGame();
-  virtual void init(GameContext& context);
-  virtual void render(GameContext& context);
+  virtual void init(GameContext&);
+  virtual void render(GameContext&);
+  void draw_board(GameContext&);
 };
 
 
