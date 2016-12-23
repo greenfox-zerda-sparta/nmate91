@@ -2,6 +2,7 @@
 
 MyGame::MyGame() {
   this->board = new Board;
+  this->keycode = 0;
 }
 
 MyGame::~MyGame() {
@@ -15,6 +16,16 @@ void MyGame::init(GameContext& context) {
 }
 
 void MyGame::render(GameContext& context) {
+  if (context.was_key_pressed(CLICK)) {
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+    board->who_is_next(x/20, y/20);
+    context.reset_keys();
+  }
+  if (board->is_won(PLAYER_1) || board->is_won(PLAYER_2)) {
+    delete board;
+    this->board = new Board;
+  }
   board->draw_board(context);
   context.render(); 
 }

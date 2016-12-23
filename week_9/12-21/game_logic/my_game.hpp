@@ -8,6 +8,7 @@
 class MyGame : public Game {
 private:
   Board* board;
+  int keycode;
 public:
   MyGame();
   ~MyGame();

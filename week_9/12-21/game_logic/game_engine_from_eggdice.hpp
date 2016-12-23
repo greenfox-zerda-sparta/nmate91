@@ -58,7 +58,7 @@ public:
     SDL_RenderPresent(renderer);
   }
   void reset_keys() {
-    for (unsigned int i = 0; i < 5; ++i) {
+    for (unsigned int i = 0; i < 6; ++i) {
       keys[i] = false;
     }
   }

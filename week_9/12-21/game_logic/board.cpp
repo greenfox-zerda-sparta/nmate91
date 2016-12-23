@@ -3,7 +3,8 @@
 Board::Board() {
   vector<vector<Markers>> new_vector(19, vector<Markers>(19, EMPTY));
   this->board_vector = new_vector;
-  this->counter = 1;
+  this->counter = 0;
+  this->next = true;
 }
 
 vector<vector<Markers>> Board::get_vector() {
@@ -13,9 +14,28 @@ vector<vector<Markers>> Board::get_vector() {
 void Board::draw_board(GameContext& context) {
   for (int i = 0; i < board_vector.size(); i++) {
     for (int j = 0; j < board_vector[i].size(); j++) {
-      context.draw_sprite("0.bmp", i * 20, j * 20);
+      if (board_vector[i][j] == EMPTY) {
+        context.draw_sprite("0.bmp", i * 20, j * 20);
+      }
+      else if (board_vector[i][j] == PLAYER_1) {
+        context.draw_sprite("1.bmp", i * 20, j * 20);
+      }
+      else if (board_vector[i][j] == PLAYER_2) {
+        context.draw_sprite("2.bmp", i* 20, j *20);
+      }
     }
   }
+}
+
+void Board::who_is_next(unsigned int i, unsigned int j) {
+  if (next == false) {
+    player_1_sets_cell(i, j);
+    next = true;
+    return;
+  }
+  next = false;
+  player_2_sets_cell(i, j);
+  return;
 }
 
 vector<vector<Markers>> Board::player_1_sets_cell(unsigned int i, unsigned int j) {
@@ -92,17 +112,18 @@ bool Board::is_given_marker_type(Markers marker, unsigned int i, unsigned int j)
 
 bool Board::are_five_in_a_row(Markers marker, unsigned int i, unsigned int j) {
   if (is_out_of_range(i, j)) {
-    counter = 1;
+    counter = 0;
     return false;
   }
   if (!is_a_player_on_cell(i, j)) {
-    counter = 1;
+    counter = 0;
+
   }
   if (is_given_marker_type(marker, i, j)) {
     counter++;
   }
   if (counter == 5) {
-    counter = 1;
+    counter = 0;
     return true;
   }
   are_five_in_a_row(marker, i + 1, j);
@@ -110,49 +131,53 @@ bool Board::are_five_in_a_row(Markers marker, unsigned int i, unsigned int j) {
 
 bool Board::are_five_in_a_col(Markers marker, unsigned int i, unsigned int j) {
   if (is_out_of_range(i, j)) {
-    counter = 1;
+    counter = 0;
     return false;
   }
   if (!is_a_player_on_cell(i, j)) {
-    counter = 1;
+    counter = 0;
   }
   if (is_given_marker_type(marker, i, j)) {
     counter++;
   }
   if (counter == 5) {
-    counter = 1;
+    counter = 0;
     return true;
   }
-  are_five_in_a_row(marker, i, j + 1);
+  are_five_in_a_col(marker, i, j + 1);
 }
 
 bool Board::are_five_in_a_diagonal(Markers marker, unsigned int i, unsigned int j) {
   if (is_out_of_range(i, j)) {
-    counter = 1;
+    counter = 0;
     return false;
   }
   if (!is_a_player_on_cell(i, j)) {
-    counter = 1;
+    counter = 0;
   }
   if (is_given_marker_type(marker, i, j)) {
     counter++;
   }
   if (counter == 5) {
-    counter = 1;
+    counter = 0;
     return true;
   }
-  are_five_in_a_row(marker, i + 1, j + 1);
+  are_five_in_a_diagonal(marker, i + 1, j + 1);
 }
 
 bool Board::is_won(Markers player) {
-  if (are_five_in_a_row(player, 0, 0)) {
-    return true;
-  }
-  if (are_five_in_a_col(player, 0, 0)) {
-    return true;
-  }
-  if (are_five_in_a_diagonal(player, 0, 0)) {
-    return true;
+  for (int i = 0; i < board_vector.size(); i++) {
+    for (int j = 0; j < board_vector[i].size(); j++) {
+      if (are_five_in_a_row(player, i, j)) {
+        return true;
+      }
+      if (are_five_in_a_col(player, i, j)) {
+        return true;
+      }
+      if (are_five_in_a_diagonal(player, i, j)) {
+        return true;
+      }
+    }
   }
   return false;
 }
