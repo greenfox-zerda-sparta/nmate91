@@ -12,7 +12,8 @@ MyGame::~MyGame() {
 void MyGame::init(GameContext& context) {
   context.load_file("0.bmp");
   context.load_file("1.bmp"); 
-  context.load_file("2.bmp"); 
+  context.load_file("2.bmp");
+  context.load_file("z.bmp"); 
 }
 
 void MyGame::render(GameContext& context) {
@@ -23,10 +24,11 @@ void MyGame::render(GameContext& context) {
     context.reset_keys();
   }
   if (board->is_won(PLAYER_1) || board->is_won(PLAYER_2)) {
-    delete board;
-    this->board = new Board;
+    context.draw_sprite_big("z.bmp", 0, 0);
   }
-  draw_board(context);
+  else {
+    draw_board(context);
+  }
   context.render(); 
 }
 

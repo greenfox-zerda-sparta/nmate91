@@ -54,6 +54,16 @@ public:
     temp.h = 20;
     SDL_RenderCopy(renderer, sprites[name], NULL, &temp);
   }
+
+  void draw_sprite_big(std::string name, int x, int y) {
+    SDL_Rect temp;
+    temp.x = x;
+    temp.y = y;
+    temp.w = 380;
+    temp.h = 380;
+    SDL_RenderCopy(renderer, sprites[name], NULL, &temp);
+  }
+
   void render() {
     SDL_RenderPresent(renderer);
   }

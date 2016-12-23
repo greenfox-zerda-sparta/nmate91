@@ -12,13 +12,15 @@ vector<vector<Markers>> Board::get_vector() {
 }
 
 void Board::who_is_next(unsigned int i, unsigned int j) {
-  if (next == false) {
+  if (next == false && is_cell_empty(i, j)) {
     player_1_sets_cell(i, j);
     next = true;
     return;
   }
-  next = false;
-  player_2_sets_cell(i, j);
+  else if (next == true && is_cell_empty(i, j)) {
+    next = false;
+    player_2_sets_cell(i, j);
+  }
   return;
 }
 
