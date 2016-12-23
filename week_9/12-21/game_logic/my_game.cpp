@@ -9,9 +9,12 @@ MyGame::~MyGame() {
 }
 
 void MyGame::init(GameContext& context) {
-  
+  context.load_file("0.bmp");
+  context.load_file("1.bmp"); 
+  context.load_file("2.bmp"); 
 }
 
 void MyGame::render(GameContext& context) {
-  
+  board->draw_board(context);
+  context.render(); 
 }

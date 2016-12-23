@@ -10,6 +10,14 @@ vector<vector<Markers>> Board::get_vector() {
   return this->board_vector;
 }
 
+void Board::draw_board(GameContext& context) {
+  for (int i = 0; i < board_vector.size(); i++) {
+    for (int j = 0; j < board_vector[i].size(); j++) {
+      context.draw_sprite("0.bmp", i * 20, j * 20);
+    }
+  }
+}
+
 vector<vector<Markers>> Board::player_1_sets_cell(unsigned int i, unsigned int j) {
   if (is_out_of_range(i, j)) {
     return board_vector;
@@ -88,7 +96,7 @@ bool Board::are_five_in_a_row(Markers marker, unsigned int i, unsigned int j) {
     return false;
   }
   if (!is_a_player_on_cell(i, j)) {
-    return false;
+    counter = 1;
   }
   if (is_given_marker_type(marker, i, j)) {
     counter++;
@@ -106,7 +114,7 @@ bool Board::are_five_in_a_col(Markers marker, unsigned int i, unsigned int j) {
     return false;
   }
   if (!is_a_player_on_cell(i, j)) {
-    return false;
+    counter = 1;
   }
   if (is_given_marker_type(marker, i, j)) {
     counter++;

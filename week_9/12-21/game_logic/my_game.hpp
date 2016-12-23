@@ -13,7 +13,7 @@ public:
   ~MyGame();
   virtual void init(GameContext& context);
   virtual void render(GameContext& context);
-}
+};
 
 
 #endif

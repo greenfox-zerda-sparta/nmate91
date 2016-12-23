@@ -2,6 +2,7 @@
 #define GAME_ENGINE_H
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 #include <iostream>
 #include <map>
@@ -49,8 +50,8 @@ public:
     SDL_Rect temp;
     temp.x = x;
     temp.y = y;
-    temp.w = 72;
-    temp.h = 72;
+    temp.w = 20;
+    temp.h = 20;
     SDL_RenderCopy(renderer, sprites[name], NULL, &temp);
   }
   void render() {

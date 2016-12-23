@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include "game_engine_from_eggdice.hpp"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ private:
   unsigned int counter;
 public:
   Board();
+  void draw_board(GameContext&);
   vector<vector<Markers>> get_vector();
   vector<vector<Markers>> player_1_sets_cell(unsigned int, unsigned int);
   vector<vector<Markers>> player_2_sets_cell(unsigned int, unsigned int);
