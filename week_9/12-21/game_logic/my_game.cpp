@@ -29,7 +29,7 @@ void MyGame::render(GameContext& context) {
   else {
     draw_board(context);
   }
-  context.render(); 
+  context.render();
 }
 
 void MyGame::draw_board(GameContext& context) {

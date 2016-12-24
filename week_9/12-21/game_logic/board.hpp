@@ -30,6 +30,7 @@ public:
   bool are_five_in_a_row(Markers, unsigned int, unsigned int);
   bool are_five_in_a_col(Markers, unsigned int, unsigned int); 
   bool are_five_in_a_diagonal(Markers, unsigned int, unsigned int);
+  bool are_five_in_a_diagonal2(Markers, unsigned int, unsigned int);
   bool is_won(Markers);
 };
 
