@@ -19,6 +19,7 @@ private:
 public:
   Board();
   vector<vector<Markers>> get_vector();
+  void clear_board();
   void who_is_next(unsigned int, unsigned int);
   vector<vector<Markers>> player_1_sets_cell(unsigned int, unsigned int);
   vector<vector<Markers>> player_2_sets_cell(unsigned int, unsigned int);

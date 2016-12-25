@@ -3,6 +3,8 @@
 MyGame::MyGame() {
   this->board = new Board;
   this->keycode = 0;
+  this->player_1_counter = 0;
+  this->player_2_counter = 0;
 }
 
 MyGame::~MyGame() {
@@ -23,8 +25,17 @@ void MyGame::render(GameContext& context) {
     board->who_is_next(x/20, y/20);
     context.reset_keys();
   }
-  if (board->is_won(PLAYER_1) || board->is_won(PLAYER_2)) {
+  if (board->is_won(PLAYER_1)) {
     context.draw_sprite_big("z.bmp", 0, 0);
+    player_1_counter++; 
+    std::cout << "PLAYER 1 won " << player_1_counter << " times." << std::endl;
+    board->clear_board();
+  }
+  if (board->is_won(PLAYER_2)) {
+    context.draw_sprite_big("z.bmp", 0, 0);
+    player_2_counter++;
+    std::cout << "PLAYER 2 won " <<  player_2_counter << " times." <<  std::endl;
+    board->clear_board();
   }
   else {
     draw_board(context);

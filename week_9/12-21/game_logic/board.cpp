@@ -11,6 +11,12 @@ vector<vector<Markers>> Board::get_vector() {
   return this->board_vector;
 }
 
+void Board::clear_board() {
+  vector<vector<Markers>> new_vector(19, vector<Markers>(19, EMPTY));
+  this->board_vector = new_vector;
+  counter = 0;
+}
+
 void Board::who_is_next(unsigned int i, unsigned int j) {
   if (next == false && is_cell_empty(i, j)) {
     player_1_sets_cell(i, j);
@@ -109,7 +115,6 @@ bool Board::are_five_in_a_row(Markers marker, unsigned int i, unsigned int j) {
     counter++;
   }
   if (counter == 5) {
-    counter = 0;
     return true;
   }
   are_five_in_a_row(marker, i + 1, j);
@@ -127,7 +132,6 @@ bool Board::are_five_in_a_col(Markers marker, unsigned int i, unsigned int j) {
     counter++;
   }
   if (counter == 5) {
-    counter = 0;
     return true;
   }
   are_five_in_a_col(marker, i, j + 1);
@@ -145,7 +149,6 @@ bool Board::are_five_in_a_diagonal(Markers marker, unsigned int i, unsigned int 
     counter++;
   }
   if (counter == 5) {
-    counter = 0;
     return true;
   }
   are_five_in_a_diagonal(marker, i + 1, j + 1);
@@ -163,7 +166,6 @@ bool Board::are_five_in_a_diagonal2(Markers marker, unsigned int i, unsigned int
     counter++;
   }
   if (counter == 5) {
-    counter = 0;
     return true;
   }
   are_five_in_a_diagonal2(marker, i - 1, j + 1);
@@ -179,7 +181,7 @@ bool Board::is_won(Markers player) {
       if (are_five_in_a_col(player, i, j)) {
         return true;
       }
-      if (are_five_in_a_diagonal(player, i, j)) {
+      if (are_five_in_a_diagonal(player, i, j)) {\
         return true;
       }
     }
