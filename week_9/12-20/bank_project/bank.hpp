@@ -26,6 +26,7 @@ public:
   Bank transfer(Bank&, double);
   void create_a_new_bond(double, double);
   bool has_bond_yearly_interest();
+  vector<Bond*> get_bonds();
 };
 
 

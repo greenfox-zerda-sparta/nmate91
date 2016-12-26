@@ -38,3 +38,7 @@ void Bank::create_a_new_bond(double amount, double interest_rate) {
 bool Bank::has_bond_yearly_interest () {
   return bonds[0]->interest_rate;
 }
+
+vector<Bond*> Bank::get_bonds() {
+  return bonds;
+}

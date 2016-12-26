@@ -51,4 +51,12 @@ TEST_CASE("bond has interest") {
   REQUIRE(bank.has_bond_yearly_interest());
 }
 
+TEST_CASE("get the bonds") {
+  Bank bank("Sir Robin");
+  bank.top_up(444.00);
+  bank.create_a_new_bond(22.99, 0.001);
+  bank.create_a_new_bond(22.44, 0.222);
+  REQUIRE(bank.get_bonds().size());
+}
+
 #endif
