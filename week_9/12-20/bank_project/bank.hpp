@@ -7,16 +7,25 @@
 
 using namespace std;
 
+struct Bond {
+  double amount;
+  double interest_rate;
+};
 
 class Bank {
 private:
   double balance;
   string name;
-  double bonds;
+  vector<Bond*> bonds;
+  void decrease_balance(double);
 public:
   Bank(string);
   string get_name();
+  double get_balance();
   double top_up(double);
+  Bank transfer(Bank&, double);
+  void create_a_new_bond(double, double);
+  bool has_bond_yearly_interest();
 };
 
 

@@ -1,3 +1,3 @@
 all:
-	g++ -std=c++11 -DTEST *.cpp
+	g++ -std=c++11 *.cpp
 
