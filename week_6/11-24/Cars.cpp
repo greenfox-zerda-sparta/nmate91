@@ -5,22 +5,19 @@ Cars::Cars() {
   car_colors = { "Piros", "Narancssárga", "Zöld", "Kék", "Türkiz", "Barna", "Lila", "Sárga", "Fekete", "Fehér" };
   name_of_the_car = car_types[rand() % 18];
   color_of_the_car = car_colors[rand() % 10];
-  char plate_number[7];
-  plate_number[0] = 'A';
-  plate_number[1] = 'A' + rand() % 26;
-  plate_number[2] = 'A' + rand() % 26;
-  plate_number[3] = '-';
-  plate_number[4] = '0' + rand() % 9;
-  plate_number[5] = '0' + rand() % 9;
-  plate_number[6] = '0' + rand() % 9;
+  string plate_number = "A";
+  plate_number.insert(plate_number.end(), ('A' + rand() % 26));
+  plate_number.insert(plate_number.end(), ('A' + rand() % 26));
+  plate_number.insert(plate_number.end(), ('-'));
+  plate_number.insert(plate_number.end(), ('0' + rand() % 9));
+  plate_number.insert(plate_number.end(), ('0' + rand() % 9));
+  plate_number.insert(plate_number.end(), ('0' + rand() % 9));
 }
 
-void Cars::print_car() {
-  cout << name_of_the_car << endl;
-  cout << color_of_the_car << endl;
-  for (int i = 0; i < 7; i++) {
-    cout << plate_number[i];
-  }
+string Cars::get_car() {
+  string result;
+  result = name_of_the_car + "\n" + color_of_the_car + "\n" + plate_number + "\n";
+  return result;
 }
 /*
 vector<vector<vector<string> > > parking_lot (4, vector<vector<string> >(4, vector <string>(8)));

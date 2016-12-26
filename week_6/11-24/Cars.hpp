@@ -12,12 +12,12 @@ class Cars {
 private:
   string name_of_the_car;
   string color_of_the_car;
-  char plate_number;
+  string plate_number;
   vector<string> car_types;
   vector<string> car_colors;
 public:
   Cars();
-  void print_car();
+  string get_car();
 };
 
 #endif

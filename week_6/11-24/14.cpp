@@ -25,6 +25,6 @@ using namespace std;
 
 int main() {
   Cars my_car;
-  my_car.print_car();
+  cout << my_car.get_car();
   return 0;
 }
