@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Color.h"
 
-enum ERROR_MESSAGE { wrong_size_hex_code, hex_begins_with_hash, hex_code_not_valid };
-
 Color::Color() {
   red = 0;
   green = 0;
@@ -15,8 +13,7 @@ Color::Color(unsigned int r, unsigned int g, unsigned int b) {
   blue = b;
 }
 
-Color::Color(std::string hex) {
-  try {
+Color::Color(std::string hex) throw(ERROR_MESSAGE) {
     if (hex.size() != 7) {
       throw wrong_size_hex_code;
     }
@@ -30,21 +27,18 @@ Color::Color(std::string hex) {
       }
     }
     this->hex_code = hex;
-  }
-  catch (ERROR_MESSAGE error) {
-    if (error = wrong_size_hex_code) {
-      std::cerr << "The length of your hex code is not valid." << std::endl;
-    }
-    else if (error = hex_begins_with_hash) {
-      std::cerr << "Your hex code shoud begin with a #." << std::endl;
-    }
-    else if (error = hex_code_not_valid) {
-      std::cerr << "You are using wrong characters for your hex code." << std::endl;
-    }
-  }
 }
 
-Color::~Color() {
+int Color::get_red() {
+  return red;
+}
+
+int Color::get_green() {
+  return green;
+}
+
+int Color::get_blue() {
+  return blue;
 }
 
 int Color::convert_hex_to_decimal(char a, char b) {
@@ -75,16 +69,5 @@ void Color::hex_to_rgb() {
   this->red = convert_hex_to_decimal(hex_code[1], hex_code[2]);
   this->green = convert_hex_to_decimal(hex_code[3], hex_code[4]);
   this->blue = convert_hex_to_decimal(hex_code[5], hex_code[6]);
-  std::cout << red << std::endl;
-  std::cout << green << std::endl;
-  std::cout << blue << std::endl;
   return;
 }
-
-/* else if ((hex_code[1] - '0') < 10 && (hex_code[1] - '0') > 0) {
-    if ((hex_code[2] - '0') < 10 && (hex_code[2] - '0') > 0) {
-      this->red = 16 * (hex_code[1] - '0') + (hex_code[2] - '0');
-    }
-    else if ((hex_code[2]))
-  }
-  else if ((hex_code[1]))*/
