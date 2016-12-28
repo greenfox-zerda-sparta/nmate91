@@ -41,6 +41,21 @@ int Color::get_blue() {
   return blue;
 }
 
+void Color::set_red(int value) {
+  red = value;
+  return;
+}
+
+void Color::set_green(int value) {
+  green = value;
+  return;
+}
+
+void Color::set_blue(int value) {
+  blue = value;
+  return;
+}
+
 int Color::convert_hex_to_decimal(char a, char b) {
   int decimal;
   if (a == '0') {
@@ -70,4 +85,38 @@ void Color::hex_to_rgb() {
   this->green = convert_hex_to_decimal(hex_code[3], hex_code[4]);
   this->blue = convert_hex_to_decimal(hex_code[5], hex_code[6]);
   return;
+}
+
+void Color::darken(float value) {
+  try {
+    if (value < 0 && value > 1) {
+      throw invalid_value;
+    }
+    this->red = red - red * value;
+    if (red < 0) { red = 0; }
+    this->green = green - green * value;
+    if (green < 0) { green = 0; }
+    this->blue = blue - blue * value;
+    if (blue < 0) { blue = 0; }
+  }
+  catch (ERROR_MESSAGE) {
+    std::cerr << "You gave an invalid value for darkening" << std::endl;
+  }
+}
+
+void Color::lighten(float value) {
+  try {
+    if (value < 0 && value > 1) {
+      throw invalid_value;
+    }
+    this->red = red + red * value;
+    if (red < 255) { red = 255; }
+    this->green = green + green * value;
+    if (green < 255) { green = 255; }
+    this->blue = blue + blue * value;
+    if (blue < 255) { blue = 255; }
+  }
+  catch (ERROR_MESSAGE) {
+    std::cerr << "You gave an invalid value for lightening" << std::endl;
+  }
 }
