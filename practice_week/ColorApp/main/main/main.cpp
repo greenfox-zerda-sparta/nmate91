@@ -2,7 +2,8 @@
 #include "Color.h"
 
 int main() {
-  Color red("#aAF0C2");
+  Color new_color("#59A27A");
+  new_color.hex_to_rgb();
   return 0;
 }
 
