@@ -8,5 +8,6 @@ private:
 public:
   Blend(Color&, Color&);
   Color make_the_blend();
+  Color operator+();
 };
 

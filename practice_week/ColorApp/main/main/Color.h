@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cstdint>
 
 enum ERROR_MESSAGE { wrong_size_hex_code, hex_begins_with_hash, 
   hex_code_not_valid, invalid_value };
@@ -24,5 +25,7 @@ public:
   void hex_to_rgb();
   void darken(float);
   void lighten(float);
+  Color& Color::operator++();
+  Color& Color::operator--();
 };
 

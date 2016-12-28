@@ -16,3 +16,7 @@ Color Blend::make_the_blend() {
   new_color.set_blue(new_blue);
   return new_color;
 }
+
+Color Blend::operator+() {
+  return this->make_the_blend();
+}

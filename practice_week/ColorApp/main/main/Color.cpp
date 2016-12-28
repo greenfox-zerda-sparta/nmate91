@@ -120,3 +120,13 @@ void Color::lighten(float value) {
     std::cerr << "You gave an invalid value for lightening" << std::endl;
   }
 }
+
+Color& Color::operator++() {
+  lighten(0.1);
+  return *this;
+}
+
+Color& Color::operator--() {
+  darken(0.1);
+  return *this;
+}
