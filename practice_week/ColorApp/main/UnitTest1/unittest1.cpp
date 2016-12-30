@@ -37,5 +37,17 @@ namespace UnitTest1
       Assert::AreEqual(color.get_green(), 15);
       Assert::AreEqual(color.get_blue(), 15);
     }
+
+    TEST_METHOD(Operators) {
+      Color color(10, 10, 10);
+      ++color;
+      Assert::AreEqual(color.get_red(), 11);
+      Assert::AreEqual(color.get_green(), 11);
+      Assert::AreEqual(color.get_blue(), 11);
+      color*1;
+      Assert::AreEqual(color.get_red(), 22);
+      Assert::AreEqual(color.get_green(), 22);
+      Assert::AreEqual(color.get_blue(), 22);
+    }
 	};
 }

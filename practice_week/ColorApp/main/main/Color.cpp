@@ -20,8 +20,8 @@ Color::Color(std::string hex) throw(ERROR_MESSAGE) {
     if (hex[0] != '#') {
       throw hex_begins_with_hash;
     }
-    std::string valid_chars = { "#abcdefABCDEF0123456789" };
-    for (int i = 0; i < hex.size(); i++) {
+    std::string valid_chars = { "abcdefABCDEF0123456789" };
+    for (int i = 1; i < hex.size(); i++) {
       if (valid_chars.find(hex[i]) == std::string::npos) {
         throw hex_code_not_valid;
       }
@@ -128,5 +128,10 @@ Color& Color::operator++() {
 
 Color& Color::operator--() {
   darken(0.1);
+  return *this;
+}
+
+Color& Color::operator*(float value) {
+  lighten(value);
   return *this;
 }

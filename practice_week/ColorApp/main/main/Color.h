@@ -27,5 +27,6 @@ public:
   void lighten(float);
   Color& Color::operator++();
   Color& Color::operator--();
+  Color& Color::operator*(float);
 };
 
