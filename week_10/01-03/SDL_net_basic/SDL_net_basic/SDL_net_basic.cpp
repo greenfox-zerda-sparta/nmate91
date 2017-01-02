@@ -7,12 +7,18 @@ int main(int argc, char *args[]) {
   SDL_Init(SDL_INIT_EVERYTHING);
   SDLNet_Init();
   IPaddress ip;
-  SDLNet_ResolveHost(&ip, "127.0.0.1", 1234);
-  TCPsocket client = SDLNet_TCP_Open(&ip);
-  char text[100];
-  SDLNet_TCP_Recv(client, text, 100);
-  std::cout << text;
-  SDLNet_TCP_Close(client);
+  SDLNet_ResolveHost(&ip, NULL, 1234);
+  TCPsocket server = SDLNet_TCP_Open(&ip);
+  TCPsocket client;
+  const char* text = "Alma";
+  while (1) {
+    client = SDLNet_TCP_Accept(server);
+    if (client) {
+      SDLNet_TCP_Send(client, text, 5);
+      SDLNet_TCP_Close(client);
+      break;
+    }
+  }
   SDL_Quit();
   return 0;
 }
