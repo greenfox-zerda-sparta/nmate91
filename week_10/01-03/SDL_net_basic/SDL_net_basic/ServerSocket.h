@@ -13,8 +13,7 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
-class ServerSocket
-{
+class ServerSocket {
 	private:
 		bool debug;                 // Flag to control whether the ServerSocket should display debug info
 

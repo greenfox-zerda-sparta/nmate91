@@ -2,6 +2,7 @@
 #define GAME_ENGINE_H
 
 #include "SDL.h"
+#include <SDL_net.h>
 
 #include <iostream>
 #include <map>

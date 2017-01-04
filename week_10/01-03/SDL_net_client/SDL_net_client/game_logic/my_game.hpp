@@ -1,9 +1,10 @@
-#ifndef MY_GAME_H
-#define MY_GAME_H
+#pragma once
 
 #include "game_engine_from_eggdice.hpp"
 #include "board.hpp"
 #include <iostream>
+
+#include "../ClientSocket.h"
 
 class MyGame : public Game {
 private:
@@ -18,6 +19,3 @@ public:
   virtual void render(GameContext&);
   void draw_board(GameContext&);
 };
-
-
-#endif

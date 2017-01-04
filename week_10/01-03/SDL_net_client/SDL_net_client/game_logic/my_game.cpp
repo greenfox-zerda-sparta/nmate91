@@ -19,10 +19,18 @@ void MyGame::init(GameContext& context) {
 }
 
 void MyGame::render(GameContext& context) {
+
+  //if(fogad adatot) { azokat hasznalja } else { getmousestate }
+
+
   if (context.was_key_pressed(CLICK)) {
     int x, y;
+
     SDL_GetMouseState(&x, &y);
     board->who_is_next(x/20, y/20);
+    
+    //ide kene, hogy kuldi az adatot
+
     context.reset_keys();
   }
   if (board->is_won(PLAYER_1)) {

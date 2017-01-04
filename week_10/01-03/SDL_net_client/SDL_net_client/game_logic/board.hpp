@@ -1,5 +1,4 @@
-#ifndef BOARD_H
-#define BOARD_H
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -34,5 +33,3 @@ public:
   bool are_five_in_a_diagonal2(Markers, unsigned int, unsigned int);
   bool is_won(Markers);
 };
-
-#endif
