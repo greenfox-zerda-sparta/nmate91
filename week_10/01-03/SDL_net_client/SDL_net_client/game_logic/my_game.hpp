@@ -4,15 +4,15 @@
 #include "board.hpp"
 #include <iostream>
 
-#include "../ClientSocket.h"
-
 class MyGame : public Game {
 private:
   Board* board;
   int keycode;
   int player_1_counter;
   int player_2_counter;
-  ClientSocket *cs;
+  TCPsocket client;
+  char text[100];
+  const char* client_text;
 public:
   MyGame();
   ~MyGame();
