@@ -6,22 +6,17 @@ MyGame::MyGame() {
   this->keycode = 0;
   this->player_1_counter = 0;
   this->player_2_counter = 0;
+  SDL_Init(SDL_INIT_EVERYTHING);
   SDLNet_Init();
-  IPaddress ip;
-
-  SDLNet_ResolveHost(&ip, "127.0.0.1", 1234);
-  this->client = SDLNet_TCP_Open(&ip);
-
-  SDLNet_TCP_Recv(client, text, 100);
-  std::cout << text << std::endl;
-
-  const char* client_text = "";
-
+  SDLNet_ResolveHost(&ip, NULL, 1234);
+  server = SDLNet_TCP_Open(&ip);
+  client = SDLNet_TCP_Accept(server);
+  text = "data_sent_for_client";
 }
 
 MyGame::~MyGame() {
   delete board;
-  SDLNet_TCP_Close(client);
+  SDLNet_TCP_Close(server);
   SDL_Quit();
 }
 
@@ -32,16 +27,28 @@ void MyGame::init(GameContext& context) {
 }
 
 void MyGame::render(GameContext& context) {
+  char client_text[100];
+  if (client) {
+    SDLNet_TCP_Recv(client, client_text, 100);
+    std::cout << client_text;
+  }
   if (context.was_key_pressed(CLICK)) {
     int x, y;
-
     SDL_GetMouseState(&x, &y);
     board->who_is_next(x/20, y/20);
     
+    if (client) {
+      SDLNet_TCP_Send(client, client_text, 100);
+    }
+
+
+    /*
     std::cout << text << std::endl;
     std::string input = "x: " + to_string(x/20) + "\n" + "y: " + to_string(y/20) + "\n" + "\n";
     client_text = input.c_str();
     SDLNet_TCP_Send(client, client_text, 100);
+    */
+
 
     context.reset_keys();
   }
