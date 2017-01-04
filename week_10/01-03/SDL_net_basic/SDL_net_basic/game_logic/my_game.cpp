@@ -12,6 +12,10 @@ MyGame::MyGame() {
   server = SDLNet_TCP_Open(&ip);
   client = SDLNet_TCP_Accept(server);
   text = "data_sent_for_client";
+  if (client) {
+    SDLNet_TCP_Recv(client, client_text, 100);
+    std::cout << client_text;
+  }
 }
 
 MyGame::~MyGame() {
@@ -27,11 +31,6 @@ void MyGame::init(GameContext& context) {
 }
 
 void MyGame::render(GameContext& context) {
-  char client_text[100];
-  if (client) {
-    SDLNet_TCP_Recv(client, client_text, 100);
-    std::cout << client_text;
-  }
   if (context.was_key_pressed(CLICK)) {
     int x, y;
     SDL_GetMouseState(&x, &y);

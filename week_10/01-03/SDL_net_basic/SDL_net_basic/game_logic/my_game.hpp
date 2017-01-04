@@ -14,6 +14,7 @@ private:
   TCPsocket client;
   IPaddress ip;
   const char* text;
+  char client_text[100];
 public:
   MyGame();
   ~MyGame();

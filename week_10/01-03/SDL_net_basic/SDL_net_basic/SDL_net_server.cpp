@@ -5,16 +5,16 @@
 #include <SDL_net.h>
 #include "./game_logic/game_engine_from_eggdice.hpp"
 #include "./game_logic/my_game.hpp"
-/*
+
 int main(int argc, char *argv[]) {
   MyGame game;
   GameEngine engine(&game, 380, 380);
   engine.run();
   return 0;
-}}*/
+}
 
 
-
+/*
 int main(int argc, char *argv[]) {
   SDL_Init(SDL_INIT_EVERYTHING);
   SDLNet_Init();
@@ -40,4 +40,4 @@ int main(int argc, char *argv[]) {
   SDLNet_TCP_Close(server);
   SDL_Quit();
   return 0;
-}
+}*/

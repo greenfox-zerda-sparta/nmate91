@@ -6,16 +6,14 @@ MyGame::MyGame() {
   this->keycode = 0;
   this->player_1_counter = 0;
   this->player_2_counter = 0;
+
   SDLNet_Init();
   IPaddress ip;
-
   SDLNet_ResolveHost(&ip, "127.0.0.1", 1234);
   this->client = SDLNet_TCP_Open(&ip);
-
   SDLNet_TCP_Recv(client, text, 100);
   std::cout << text << std::endl;
-
-  const char* client_text = "";
+  client_text = "";
 
 }
 
