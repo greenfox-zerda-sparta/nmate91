@@ -1,19 +1,16 @@
 #include "stdafx.h"
 #include "ClientSocket.h"
 
-// Static constants
-const std::string  ClientSocket::SERVER_NOT_FULL           = "OK";        // Server's response when there are free spots a client can join
-const std::string  ClientSocket::SERVER_FULL               = "FULL";      // Server's response when there are no free spots, so a client cannot join
-const std::string  ClientSocket::SHUTDOWN_SIGNAL           = "/shutdown"; // What you type to shutdown the server
-const std::string  ClientSocket::QUIT_SIGNAL               = "/quit";     // What you type to shutdown the client
-const unsigned int ClientSocket::CONNECTION_TIMEOUT_PERIOD = 5000;        // 5 second connection timeout
-const unsigned int ClientSocket::SOCKET_SET_POLL_PERIOD    = 10;          // 10ms, so poll 100 times/second
+const std::string  ClientSocket::SERVER_NOT_FULL = "OK"; // Server's response when there are free spots a client can join
+const std::string  ClientSocket::SERVER_FULL = "FULL"; // Server's response when there are no free spots, so a client cannot join
+const std::string  ClientSocket::SHUTDOWN_SIGNAL = "/shutdown"; // What you type to shutdown the server
+const std::string  ClientSocket::QUIT_SIGNAL = "/quit"; // What you type to shutdown the client
+const unsigned int ClientSocket::CONNECTION_TIMEOUT_PERIOD = 5000; // 5 second connection timeout
+const unsigned int ClientSocket::SOCKET_SET_POLL_PERIOD = 10; // 10ms, so poll 100 times/second
 
-// ClientSocket constructor
-ClientSocket::ClientSocket(string theServerAddress, unsigned int theServerPort, unsigned int theBufferSize)
-{
-	debug          = true;      // Flag to control whether to output debug info
-	shutdownClient = false;     // Flag to control whether it's time to shut down the client
+ClientSocket::ClientSocket(string theServerAddress, unsigned int theServerPort, unsigned int theBufferSize) {
+	debug = true; // Flag to control whether to output debug info
+	shutdownClient = false; // Flag to control whether it's time to shut down the client
 
 	// The host name of the server.
 	// This can be either a dot-quad like 127.0.0.1 or a hostname like "localhost" or "foo.com" etc.
@@ -24,47 +21,31 @@ ClientSocket::ClientSocket(string theServerAddress, unsigned int theServerPort, 
 
 	inputLength = 0;
 
-	try
-	{
+	try {
 		pBuffer = new char[bufferSize]; // Create the transmission buffer character array
+		socketSet = SDLNet_AllocSocketSet(2); // Create a socket set big enough to hold the server socket and our own client socket
 
-		// Create a socket set big enough to hold the server socket and our own client socket
-		socketSet = SDLNet_AllocSocketSet(2);
-
-		// If we couldn't create the socket set then throw an exception
-		if (socketSet == NULL)
-		{
+    if (socketSet == NULL) {
 			string msg = "Failed to allocate the socket set in ClientSocket constructor: ";
-			msg += SDLNet_GetError();
-
+			msg += SDLNet_GetError(); // returns a string, which logs the exact error msg
 			SocketException e(msg);
 			throw e;
 		}
 	}
-	catch (SocketException e)
-	{
-		// Re-throw the exception to be dealt with appropriately elsewhere
+	catch (SocketException e) {
+		// Re-throw the exception to be dealt with IN THE MAIN
 		throw e;
 	}
+} 
 
-} // End of ClientSocket constructor
-
-// ClientSocket destructor
-ClientSocket::~ClientSocket()
-{
-	// Close our server and client sockets
+ClientSocket::~ClientSocket() {
 	SDLNet_TCP_Close(serverSocket);
-	SDLNet_TCP_Close(clientSocket);
-
-	// Free our socket set (i.e. all the clients in our socket set)
-	SDLNet_FreeSocketSet(socketSet);
-
-	// Release any properties on the heap
-	delete pBuffer;
+	SDLNet_TCP_Close(clientSocket); // Close our server and client sockets
+	SDLNet_FreeSocketSet(socketSet); // Free our socket set (i.e. all the clients in our socket set)
+	delete pBuffer; // Release any properties on the heap
 }
 
-void ClientSocket::connectToServer()
-{
+void ClientSocket::connectToServer() {
 	// Try to resolve the hostname to an IP address, if it's already an IP address then that's fine
 	// If successful, this places the connection details in the serverIP object.
 	int hostResolved = SDLNet_ResolveHost(&serverIP, serverHostname.c_str(), serverPort);
@@ -77,8 +58,7 @@ void ClientSocket::connectToServer()
 		SocketException e(msg);
 		throw e;
 	}
-	else // otherwise if we successfully resolved the hostname...
-	{
+	else {
 		// ...get our IP address in dot-quad format by breaking up the 32-bit unsigned host address
 		// and splitting it into an array of four 8-bit unsigned numbers...
 		Uint8 * dotQuad = (Uint8*)&serverIP.host;
@@ -92,8 +72,7 @@ void ClientSocket::connectToServer()
 		dotQuadString += toString( (unsigned short)dotQuad[3] );
 
 		//... and then outputting them. Then read the last 16 bits of the serverIP object to get the port number
-		if (debug)
-		{
+		if (debug) {
 			cout << "Successfully resolved server to IP: " << dotQuadString;
 			cout << ", will use port " << SDLNet_Read16(&serverIP.port) << endl;
 
@@ -185,8 +164,7 @@ void ClientSocket::connectToServer()
 }
 
 // Function to check for any incoming messages
-string ClientSocket::checkForIncomingMessages()
-{
+string ClientSocket::checkForIncomingMessages() {
 	// Define a string with a blank message
 	string receivedMessage = "";
 
@@ -196,29 +174,22 @@ string ClientSocket::checkForIncomingMessages()
 	// This produces a LOT of debug output, so only uncomment if the code's really misbehaving...
 	//if (debug) { cout << "There are " << activeSockets << " socket(s) with data on them at the moment." << endl; }
 
-	if (activeSockets != 0)
-	{
+	if (activeSockets != 0) {
 		// Check if we got a message from the server
 		int gotMessage = SDLNet_SocketReady(clientSocket);
-
-		if (gotMessage != 0)
-		{
+		if (gotMessage != 0) {
 			int serverResponseByteCount = SDLNet_TCP_Recv(clientSocket, pBuffer, bufferSize);
-
-			if (debug)
-			{
+			if (debug) {
 				cout << endl << "Got message: " << pBuffer << " (" << serverResponseByteCount << " bytes)" << endl;
 			}
-
-			if (serverResponseByteCount != 0)
-			{
+			if (serverResponseByteCount != 0) {
 				receivedMessage = toString(pBuffer);
 
 				// If we've received the shutdown signal set the flag appropriately
-				if (receivedMessage == ClientSocket::SHUTDOWN_SIGNAL)
-				{
-					if (debug) { cout << "Setting shutdownClient to true" << endl; }
-
+				if (receivedMessage == ClientSocket::SHUTDOWN_SIGNAL) {
+					if (debug) { 
+            cout << "Setting shutdownClient to true" << endl; 
+          }
 					shutdownClient = true;
 				}
 			}
@@ -252,22 +223,19 @@ void ClientSocket::displayMessage(string &receivedMessage)
 }
 
 // Function to display the prompt + any user input that hasn't been sent yet
-void ClientSocket::displayPrompt()
-{
+void ClientSocket::displayPrompt() {
 	cout << "Write something >>> " << getCurrentUserInputContents();
 	fflush(stdout);
 }
 
 // Function to get user input in a non-blocking manner
-void ClientSocket::getUserInput()
-{
+void ClientSocket::getUserInput() {
 	// If we've detected that the user has pressed a key..
 	int status = _kbhit();
 
 	//cout << "status is: " << status << endl;
 
-	if (status != 0)
-	{
+	if (status != 0) {
 		//cout << "key was pressed and status is" << status << endl;
 
 		// Read what the keypress was
@@ -280,17 +248,15 @@ void ClientSocket::getUserInput()
 		fflush(stdout);
 
 		// If the key pressed wasn't return then add the character to our message string
-		if ((int)theChar != 13)
-		{
+		if ((int)theChar != 13) {
 			//cout << "Got the character: " << theChar << " (which is number: " << int(theChar) << ")" << endl;
 
 			// Add the character to our input string
 			userInput += theChar;
-		}
-		else // Otherwise (if the user pressed enter) then send the message
+		}	
+    else // Otherwise (if the user pressed enter) then send the message
 		{
 			//if (debug) { cout << "User pressed return - will attempt to send message..." << endl; }
-
 			// Copy our user's string into our char array called "buffer"
 			strcpy( pBuffer, userInput.c_str() );
 

@@ -3,48 +3,41 @@
 
 // Static constants for the ServerSocket class
 const string ServerSocket::SERVER_NOT_FULL = "OK";
-const string ServerSocket::SERVER_FULL     = "FULL";
+const string ServerSocket::SERVER_FULL = "FULL";
 const string ServerSocket::SHUTDOWN_SIGNAL = "/shutdown";
 
 // ServerSocket constructor
-ServerSocket::ServerSocket(unsigned int thePort, unsigned int theBufferSize, unsigned int theMaxSockets)
-{
-	debug          = true; // Flag to control whether to output debug info
+ServerSocket::ServerSocket(unsigned int thePort, unsigned int theBufferSize, unsigned int theMaxSockets) {
+	debug = true; // Flag to control whether to output debug info
 	shutdownServer = false; // Flag to control whether it's time to shut down the server
 
-	port       = thePort;                      // The port number on the server we're connecting to
-	bufferSize = theBufferSize;                // The maximum size of a message
-	maxSockets = theMaxSockets;                // Maximum number of sockets in our socket set
-	maxClients = theMaxSockets - 1;            // Maximum number of clients who can connect to the server
+	port = thePort; // The port number on the server we're connecting to
+	bufferSize = theBufferSize; // The maximum size of a message
+	maxSockets = theMaxSockets; // Maximum number of sockets in our socket set
+	maxClients = theMaxSockets - 1; // Maximum number of clients who can connect to the server
 
 	pClientSocket = new TCPsocket[maxClients]; // Create the array to the client sockets
-	pSocketIsFree = new bool[maxClients];      // Create the array to the client socket free status'
-	pBuffer = new char[bufferSize];            // Create the transmission buffer character array
+	pSocketIsFree = new bool[maxClients]; // Create the array to the client socket free status'
+	pBuffer = new char[bufferSize]; // Create the transmission buffer character array
 
-	clientCount    = 0;     // Initially we have zero clients...
-
+	clientCount = 0; // Initially we have zero clients...
 
 	// Create the socket set with enough space to store our desired number of connections (i.e. sockets)
 	socketSet = SDLNet_AllocSocketSet(maxSockets);
-	if (socketSet == NULL)
-	{
+	if (socketSet == NULL) {
 		string msg = "Failed to allocate the socket set: ";
 		msg += SDLNet_GetError();
 
 		SocketException e(msg);
 		throw e;
 	}
-	else
-	{
-		if (debug)
-		{
+	else {
+		if (debug) {
 			cout << "Allocated socket set size: " << maxSockets << ", of which " << maxClients << " are free." <<  endl;
 		}
 	}
-
 	// Initialize all the client sockets (i.e. blank them ready for use!)
-	for (unsigned int loop = 0; loop < maxClients; loop++)
-	{
+	for (unsigned int loop = 0; loop < maxClients; loop++) {
 		pClientSocket[loop] = NULL;
 		pSocketIsFree[loop] = true; // Set all our sockets to be free (i.e. available for use for new client connections)
 	}
@@ -56,11 +49,9 @@ ServerSocket::ServerSocket(unsigned int thePort, unsigned int theBufferSize, uns
 	// values: -1 if resolving failed, and 0 if resolving was successful
 	int hostResolved = SDLNet_ResolveHost(&serverIP, NULL, port);
 
-	if (hostResolved == -1)
-	{
+	if (hostResolved == -1) {
 		string msg = "Failed to open the server socket: ";
 		msg += SDLNet_GetError();
-
 		SocketException e(msg);
 		throw e;
 	}
@@ -89,56 +80,43 @@ ServerSocket::ServerSocket(unsigned int thePort, unsigned int theBufferSize, uns
 	// Try to open the server socket
 	serverSocket = SDLNet_TCP_Open(&serverIP);
 
-	if (!serverSocket)
-	{
+	if (!serverSocket) {
 		string msg = "Failed to open the server socket: ";
 		msg += SDLNet_GetError();
-
 		SocketException e(msg);
 		throw e;
 	}
-	else
-	{
-		if (debug) { cout << "Sucessfully created server socket." << endl; }
+	else {
+		if (debug) {
+      cout << "Sucessfully created server socket." << endl; 
+    }
 	}
 
-	// Add our server socket (i.e. the listening socket) to the socket set
-	SDLNet_TCP_AddSocket(socketSet, serverSocket);
+	
+  SDLNet_TCP_AddSocket(socketSet, serverSocket); // Add our server socket (i.e. the listening socket) to the socket set
 
 	if (debug) {
 		cout << "Awaiting clients..." << endl;
 	}
-
-} // End of constructor
+}
 
 // ServerSocket destructor
-ServerSocket::~ServerSocket()
-{
-	// Close all the open client sockets
-	for (unsigned int loop = 0; loop < maxClients; loop++)
-	{
-		if (pSocketIsFree[loop] == false)
-		{
+ServerSocket::~ServerSocket() {
+	for (unsigned int loop = 0; loop < maxClients; loop++) {
+		if (pSocketIsFree[loop] == false) {
 			SDLNet_TCP_Close(pClientSocket[loop]);
 			pSocketIsFree[loop] = true;
 		}
 	}
-
-	// Close our server socket
-	SDLNet_TCP_Close(serverSocket);
-
-	// Free our socket set
-	SDLNet_FreeSocketSet(socketSet);
-
-	// Release any properties on the heap
+	SDLNet_TCP_Close(serverSocket); // Close our server socket
+	SDLNet_FreeSocketSet(socketSet); // Free our socket set
 	delete pClientSocket;
 	delete pSocketIsFree;
 	delete pBuffer;
 }
 
 
-void ServerSocket::checkForConnections()
-{
+void ServerSocket::checkForConnections() {
 	// Check for activity on the entire socket set. The second parameter is the number of milliseconds to wait for.
 	// For the wait-time, 0 means do not wait (high CPU!), -1 means wait for up to 49 days (no, really), and any other
 	// number is a number of milliseconds, i.e. 5000 means wait for 5 seconds, 50 will poll (1000 / 50 = 20) times per second.
@@ -146,14 +124,11 @@ void ServerSocket::checkForConnections()
 	// be a good choice for a FPS server where every ms counts! Also, 1,000 polls per second produces negligable CPU load,
 	// if you put it on 0 then it WILL eat all the available CPU time on one of your cores...
 	int numActiveSockets = SDLNet_CheckSockets(socketSet, 1);
-
-	if (numActiveSockets != 0)
-	{
+	if (numActiveSockets != 0) {
 		if (debug) {
 			cout << "There are currently " << numActiveSockets << " socket(s) with data to be processed." << endl;
 		}
 	}
-
 	// Check if our server socket has received any data
 	// Note: SocketReady can only be called on a socket which is part of a set and that has CheckSockets called on it (the set, that is)
 	// SDLNet_SocketRead returns non-zero for activity, and zero is returned for no activity. Which is a bit bass-ackwards IMHO, but there you go.

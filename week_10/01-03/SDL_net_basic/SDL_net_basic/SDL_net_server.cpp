@@ -3,46 +3,6 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_net.h>
-
-/*int main(int argc, char *args[]) {
-  SDL_Init(SDL_INIT_EVERYTHING);
-  SDLNet_Init();
-  IPaddress ip;
-  SDLNet_ResolveHost(&ip, NULL, 1234);
-  TCPsocket server = SDLNet_TCP_Open(&ip);
-  TCPsocket client;
-  SDLNet_SocketSet set;
-  set = SDLNet_AllocSocketSet(16);
-  int SDLNetTCPAddSocket(SDLNet_SocketSet, TCPsocket);
-  int numused;
-  numused = SDLNetTCPAddSocket(set, client);
-  int numready; 
-  numready = SDLNet_CheckSockets(set, 1000);
-  while (1) {
-    if (numready) {
-      if (SDLNet_SocketReady(client)) {
-        client = SDLNet_TCP_Accept(server);
-        if (client) {
-          std::string text;
-          std::cout << "Write a message!" << std::endl;
-          std::getline(std::cin, text);
-          SDLNet_TCP_Send(client, text.c_str(), text.length() + 1);
-          SDLNet_TCP_Close(client);
-        } 
-      }
-    }
-  }
-  SDL_Quit();
-  return 0;
-}*/
-
-// SDL_net Server | r3dux.org | 14/01/2011
-// Re-written simple SDL_net socket client example | Nov 2011 | r3dux
-// Library dependencies: libSDL, libSDL_net
-
-#// Re-written simple SDL_net socket server example | Nov 2011 | r3dux
-// Library dependencies: libSDL, libSDL_net
-
 #include "ServerSocket.h"
 
 int main(int argc, char *argv[]) {
@@ -85,6 +45,7 @@ int main(int argc, char *argv[]) {
         if (activeClient != -1) {
           // ...then process that client!
           ss->dealWithActivity(activeClient);
+
         }
 
         // When there are no more clients with activity to process, continue...
