@@ -6,10 +6,33 @@ MyGame::MyGame() {
   this->keycode = 0;
   this->player_1_counter = 0;
   this->player_2_counter = 0;
+  if (SDLNet_Init() == -1) {
+    std::cerr << "Failed to intialise SDL_net: " << SDLNet_GetError() << std::endl;
+    exit(-1);
+  }
+  try {
+    cs = new ClientSocket("127.0.0.1", 1234, 512);
+  }
+  catch (SocketException e) {
+    std::cerr << "Something went wrong creating a ClientSocket object." << std::endl;
+    std::cerr << "Error is: " << e.what() << std::endl;
+    std::cerr << "Terminating application." << std::endl;
+    exit(-1);
+  }
+  try {
+    cs->connectToServer();
+    cs->displayPrompt();
+  }
+  catch (SocketException e) {
+    cerr << "Caught an exception in the main loop..." << endl;
+    cerr << e.what() << endl;
+    cerr << "Terminating application." << endl;
+  }
 }
 
 MyGame::~MyGame() {
   delete board;
+  SDLNet_Quit();
 }
 
 void MyGame::init(GameContext& context) {
@@ -21,7 +44,6 @@ void MyGame::init(GameContext& context) {
 void MyGame::render(GameContext& context) {
 
   //if(fogad adatot) { azokat hasznalja } else { getmousestate }
-
 
   if (context.was_key_pressed(CLICK)) {
     int x, y;

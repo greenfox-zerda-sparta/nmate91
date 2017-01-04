@@ -12,6 +12,7 @@ private:
   int keycode;
   int player_1_counter;
   int player_2_counter;
+  ClientSocket *cs;
 public:
   MyGame();
   ~MyGame();
