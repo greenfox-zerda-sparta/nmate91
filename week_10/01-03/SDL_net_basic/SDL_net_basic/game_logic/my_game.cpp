@@ -6,16 +6,16 @@ MyGame::MyGame() {
   this->keycode = 0;
   this->player_1_counter = 0;
   this->player_2_counter = 0;
-  SDL_Init(SDL_INIT_EVERYTHING);
+  //SDL_Init(SDL_INIT_EVERYTHING);
   SDLNet_Init();
   SDLNet_ResolveHost(&ip, NULL, 1234);
   server = SDLNet_TCP_Open(&ip);
   client = SDLNet_TCP_Accept(server);
-  text = "data_sent_for_client";
   if (client) {
     SDLNet_TCP_Recv(client, client_text, 100);
     std::cout << client_text;
   }
+  text = "data";
 }
 
 MyGame::~MyGame() {
@@ -35,7 +35,7 @@ void MyGame::render(GameContext& context) {
     int x, y;
     SDL_GetMouseState(&x, &y);
     board->who_is_next(x/20, y/20);
-    
+
     if (client) {
       SDLNet_TCP_Send(client, client_text, 100);
     }

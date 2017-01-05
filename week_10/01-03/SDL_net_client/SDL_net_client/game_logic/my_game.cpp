@@ -10,15 +10,16 @@ MyGame::MyGame() {
   SDLNet_Init();
   IPaddress ip;
   SDLNet_ResolveHost(&ip, "127.0.0.1", 1234);
+  //SDLNet_ResolveHost(&ip, "10.27.99.165", 1234);
   this->client = SDLNet_TCP_Open(&ip);
   SDLNet_TCP_Recv(client, text, 100);
   std::cout << text << std::endl;
-  client_text = "";
-
+  client_text = new int[2];
 }
 
 MyGame::~MyGame() {
   delete board;
+  delete client_text;
   SDLNet_TCP_Close(client);
   SDL_Quit();
 }
@@ -32,14 +33,17 @@ void MyGame::init(GameContext& context) {
 void MyGame::render(GameContext& context) {
   if (context.was_key_pressed(CLICK)) {
     int x, y;
-
     SDL_GetMouseState(&x, &y);
     board->who_is_next(x/20, y/20);
     
-    std::cout << text << std::endl;
-    std::string input = "x: " + to_string(x/20) + "\n" + "y: " + to_string(y/20) + "\n" + "\n";
-    client_text = input.c_str();
+    array_coordinates[0] = x / 20;
+    array_coordinates[1] = y / 20;
+    client_text = array_coordinates;
     SDLNet_TCP_Send(client, client_text, 100);
+    SDLNet_TCP_Recv(client, text, 100);
+    x = text[0];
+    y = text[1];
+    board->who_is_next(x + 1, y + 1);
 
     context.reset_keys();
   }

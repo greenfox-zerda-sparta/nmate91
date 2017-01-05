@@ -11,8 +11,9 @@ private:
   int player_1_counter;
   int player_2_counter;
   TCPsocket client;
-  char text[100];
-  const char* client_text;
+  int text[100];
+  int array_coordinates[2];
+  const int* client_text;
 public:
   MyGame();
   ~MyGame();
