@@ -11,8 +11,11 @@ private:
   int player_1_counter;
   int player_2_counter;
   TCPsocket client;
+  SDLNet_SocketSet set;
   int text[100];
   int array_coordinates[2];
+  int numused;
+  int numready;
   const int* client_text;
 public:
   MyGame();

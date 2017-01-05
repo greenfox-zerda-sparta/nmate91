@@ -9,12 +9,14 @@ MyGame::MyGame() {
 
   SDLNet_Init();
   IPaddress ip;
-  SDLNet_ResolveHost(&ip, "127.0.0.1", 1234);
+  SDLNet_ResolveHost(&ip, "10.27.6.95", 1234);
   //SDLNet_ResolveHost(&ip, "10.27.99.165", 1234);
   this->client = SDLNet_TCP_Open(&ip);
   SDLNet_TCP_Recv(client, text, 100);
   std::cout << text << std::endl;
   client_text = new int[2];
+  set = SDLNet_AllocSocketSet(3);
+  SDLNet_TCP_AddSocket(set, client);
 }
 
 MyGame::~MyGame() {
@@ -31,24 +33,35 @@ void MyGame::init(GameContext& context) {
 }
 
 void MyGame::render(GameContext& context) {
+  //varom az adatot
+  //ez egy baszas
+
+  if (SDLNet_CheckSockets(set, 10) == 1) {
+    if (SDLNet_SocketReady(client)) {
+      int x, y;
+      if (SDLNet_TCP_Recv(client, text, 100)) {
+        x = text[0];
+        y = text[1];
+        board->who_is_next(x, y);
+        draw_board(context);
+      }
+    }
+  }
+
+
   if (context.was_key_pressed(CLICK)) {
     int x, y;
     SDL_GetMouseState(&x, &y);
-    board->who_is_next(x/20, y/20);
-    
+    board->who_is_next(x / 20, y / 20);
+
+    //kuldok
+
     array_coordinates[0] = x / 20;
     array_coordinates[1] = y / 20;
     client_text = array_coordinates;
     SDLNet_TCP_Send(client, client_text, 100);
-
-    draw_board(context);
-    
-    SDLNet_TCP_Recv(client, text, 100);
-    x = text[0];
-    y = text[1];
-    board->who_is_next(x, y);
-
     context.reset_keys();
+    draw_board(context);
 
   }
   if (board->is_won(PLAYER_1)) {

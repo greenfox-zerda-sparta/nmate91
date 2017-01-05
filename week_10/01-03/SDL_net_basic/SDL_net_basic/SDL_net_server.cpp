@@ -34,15 +34,14 @@ int main(int argc, char *argv[]) {
       int client_text[100];
       while (client_text[0] != 'q') {
         SDLNet_TCP_Recv(clientvector[1], client_text, 100);
-        std::cout << client_text[1] << std::endl;
+        std::cout << client_text[0] << ", " << client_text[1] << std::endl;
         SDLNet_TCP_Send(clientvector[0], client_text, 100);
         SDLNet_TCP_Recv(clientvector[0], client_text, 100);
-        std::cout << client_text[0] << std::endl;
+        std::cout << client_text[0] << ", " << client_text[1] << std::endl;
         SDLNet_TCP_Send(clientvector[1], client_text, 100);
       }
       SDLNet_TCP_Close(clientvector[0]);
       SDLNet_TCP_Close(clientvector[1]);
-
       break;
     }
   }
