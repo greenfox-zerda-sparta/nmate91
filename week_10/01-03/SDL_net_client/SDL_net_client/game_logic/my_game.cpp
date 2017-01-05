@@ -40,12 +40,16 @@ void MyGame::render(GameContext& context) {
     array_coordinates[1] = y / 20;
     client_text = array_coordinates;
     SDLNet_TCP_Send(client, client_text, 100);
+
+    draw_board(context);
+    
     SDLNet_TCP_Recv(client, text, 100);
     x = text[0];
     y = text[1];
-    board->who_is_next(x + 1, y + 1);
+    board->who_is_next(x, y);
 
     context.reset_keys();
+
   }
   if (board->is_won(PLAYER_1)) {
     player_1_counter++; 
