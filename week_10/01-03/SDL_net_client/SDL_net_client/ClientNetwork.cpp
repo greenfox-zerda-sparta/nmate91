@@ -14,7 +14,6 @@ ClientNetwork::ClientNetwork() {
   SDLNet_TCP_AddSocket(set, client);
 }
 
-
 ClientNetwork::~ClientNetwork() {
   delete client_coordinates;
   SDLNet_FreeSocketSet(set);
@@ -39,17 +38,19 @@ void ClientNetwork::send_coordinates_to_server(int x, int y) {
 }
 
 int ClientNetwork::get_received_x_coordinate() {
-  int x, y;
-  int msg = SDLNet_TCP_Recv(client, array_to_send_coordinates, 100);
-  if (msg) {
-    return array_to_send_coordinates[0];
+  if (is_receiving_data_from_client()) {
+    int msg = SDLNet_TCP_Recv(client, array_to_send_coordinates, 100);
+    if (msg) {
+      return array_to_send_coordinates[0];
+    }
   }
 }
 
 int ClientNetwork::get_received_y_coordinate() {
-  int x, y;
-  int msg = SDLNet_TCP_Recv(client, array_to_send_coordinates, 100);
-  if (msg) {
-    return array_to_send_coordinates[1];
+  if (is_receiving_data_from_client()) {
+    int msg = SDLNet_TCP_Recv(client, array_to_send_coordinates, 100);
+    if (msg) {
+      return array_to_send_coordinates[1];
+    }
   }
 }

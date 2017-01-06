@@ -11,7 +11,6 @@ MyGame::MyGame() {
   SDLNet_ResolveHost(&ip, "127.0.0.1", 1234);
   this->client = SDLNet_TCP_Open(&ip);
   SDLNet_TCP_Recv(client, array_to_send_coordinates, 100);
-  std::cout << array_to_send_coordinates << std::endl;
   client_coordinates = new int[2];
   set = SDLNet_AllocSocketSet(3);
   SDLNet_TCP_AddSocket(set, client);
@@ -32,7 +31,7 @@ void MyGame::init(GameContext& context) {
 }
 
 void MyGame::render(GameContext& context) {
-  if (SDLNet_CheckSockets(set, 100)) {
+  if (SDLNet_CheckSockets(set, 500)) {
     if (SDLNet_SocketReady(client)) {
       int x, y;
       int msg = SDLNet_TCP_Recv(client, array_to_send_coordinates, 100);
