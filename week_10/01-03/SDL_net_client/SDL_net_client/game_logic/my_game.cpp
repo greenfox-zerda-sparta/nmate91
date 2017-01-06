@@ -9,7 +9,7 @@ MyGame::MyGame() {
 
   SDLNet_Init();
   IPaddress ip;
-  SDLNet_ResolveHost(&ip, "10.27.6.95", 1234);
+  SDLNet_ResolveHost(&ip, "127.0.0.1", 1234);
   //SDLNet_ResolveHost(&ip, "10.27.99.165", 1234);
   this->client = SDLNet_TCP_Open(&ip);
   SDLNet_TCP_Recv(client, text, 100);
@@ -36,14 +36,16 @@ void MyGame::render(GameContext& context) {
   //varom az adatot
   //ez egy baszas
 
-  if (SDLNet_CheckSockets(set, 10) == 1) {
+  if (SDLNet_CheckSockets(set, 100)) {
     if (SDLNet_SocketReady(client)) {
       int x, y;
-      if (SDLNet_TCP_Recv(client, text, 100)) {
+      int msg = SDLNet_TCP_Recv(client, text, 100);
+      if (msg) {
         x = text[0];
         y = text[1];
         board->who_is_next(x, y);
         draw_board(context);
+        context.render();
       }
     }
   }
@@ -62,6 +64,7 @@ void MyGame::render(GameContext& context) {
     SDLNet_TCP_Send(client, client_text, 100);
     context.reset_keys();
     draw_board(context);
+    context.render();
 
   }
   if (board->is_won(PLAYER_1)) {
