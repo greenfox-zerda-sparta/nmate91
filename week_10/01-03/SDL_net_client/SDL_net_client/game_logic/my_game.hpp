@@ -2,7 +2,6 @@
 
 #include "game_engine_from_eggdice.hpp"
 #include "board.hpp"
-#include <iostream>
 
 class MyGame : public Game {
 private:
