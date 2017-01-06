@@ -12,11 +12,9 @@ private:
   int player_2_counter;
   TCPsocket client;
   SDLNet_SocketSet set;
-  int text[100];
-  int array_coordinates[2];
-  int numused;
-  int numready;
-  const int* client_text;
+  int array_to_send_coordinates[100];
+  int array_to_allocate_coordinates[2];
+  const int* client_coordinates;
 public:
   MyGame();
   ~MyGame();

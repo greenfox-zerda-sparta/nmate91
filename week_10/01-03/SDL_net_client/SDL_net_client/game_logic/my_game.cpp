@@ -6,22 +6,21 @@ MyGame::MyGame() {
   this->keycode = 0;
   this->player_1_counter = 0;
   this->player_2_counter = 0;
-
   SDLNet_Init();
   IPaddress ip;
   SDLNet_ResolveHost(&ip, "127.0.0.1", 1234);
-  //SDLNet_ResolveHost(&ip, "10.27.99.165", 1234);
   this->client = SDLNet_TCP_Open(&ip);
-  SDLNet_TCP_Recv(client, text, 100);
-  std::cout << text << std::endl;
-  client_text = new int[2];
+  SDLNet_TCP_Recv(client, array_to_send_coordinates, 100);
+  std::cout << array_to_send_coordinates << std::endl;
+  client_coordinates = new int[2];
   set = SDLNet_AllocSocketSet(3);
   SDLNet_TCP_AddSocket(set, client);
 }
 
 MyGame::~MyGame() {
   delete board;
-  delete client_text;
+  delete client_coordinates;
+  SDLNet_FreeSocketSet(set);
   SDLNet_TCP_Close(client);
   SDL_Quit();
 }
@@ -33,36 +32,30 @@ void MyGame::init(GameContext& context) {
 }
 
 void MyGame::render(GameContext& context) {
-  //varom az adatot
-
   if (SDLNet_CheckSockets(set, 100)) {
     if (SDLNet_SocketReady(client)) {
       int x, y;
-      int msg = SDLNet_TCP_Recv(client, text, 100);
+      int msg = SDLNet_TCP_Recv(client, array_to_send_coordinates, 100);
       if (msg) {
-        x = text[0];
-        y = text[1];
+        x = array_to_send_coordinates[0];
+        y = array_to_send_coordinates[1];
         board->who_is_next(x, y);
         draw_board(context);
         context.render();
       }
     }
   }
-
-
   if (context.was_key_pressed(CLICK)) {
     int x, y;
     SDL_GetMouseState(&x, &y);
     board->who_is_next(x / 20, y / 20);
-
-    array_coordinates[0] = x / 20;
-    array_coordinates[1] = y / 20;
-    client_text = array_coordinates;
-    SDLNet_TCP_Send(client, client_text, 100);
+    array_to_allocate_coordinates[0] = x / 20;
+    array_to_allocate_coordinates[1] = y / 20;
+    client_coordinates = array_to_allocate_coordinates;
+    SDLNet_TCP_Send(client, client_coordinates, 100);
     context.reset_keys();
     draw_board(context);
     context.render();
-
   }
   if (board->is_won(PLAYER_1)) {
     player_1_counter++; 
