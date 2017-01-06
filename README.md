@@ -1,4 +1,4 @@
-Nemeth Mate
-Green Fox Academy
-Zerda
+Nemeth Mate,
+Green Fox Academy,
+Zerda - 
 Sparta

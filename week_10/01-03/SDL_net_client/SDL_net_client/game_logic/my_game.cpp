@@ -34,7 +34,6 @@ void MyGame::init(GameContext& context) {
 
 void MyGame::render(GameContext& context) {
   //varom az adatot
-  //ez egy baszas
 
   if (SDLNet_CheckSockets(set, 100)) {
     if (SDLNet_SocketReady(client)) {
@@ -55,8 +54,6 @@ void MyGame::render(GameContext& context) {
     int x, y;
     SDL_GetMouseState(&x, &y);
     board->who_is_next(x / 20, y / 20);
-
-    //kuldok
 
     array_coordinates[0] = x / 20;
     array_coordinates[1] = y / 20;
