@@ -34,4 +34,12 @@ void CLUI::takeUserGuess() {
     }
     guesscounter++;
   } while (guesscounter != MAX_GUESS);
+  std::string text;
+  std::cout << "Do you want to play again? Type yes or no." << std::endl;
+  std::cin >> text;
+  if (text == "yes") {
+    guesscounter = 0;
+    takeUserGuess();
+  }
+  std::cout << "Bye-bye!!!" << std::endl;
 }

@@ -3,7 +3,7 @@
 #include <string>
 #include "GameLogic.h"
 
-#define MAX_GUESS 5
+#define MAX_GUESS 10
 
 class CLUI {
 private:
