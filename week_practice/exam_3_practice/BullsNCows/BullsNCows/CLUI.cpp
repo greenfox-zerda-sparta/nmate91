@@ -23,6 +23,7 @@ void CLUI::takeUserGuess() {
     gamelogic->setUserNumber(usernumber);
     if (gamelogic->isWon()) {
       std::cout << "Congrats, you've won!!!" << std::endl;
+      writeWinToLogFile();
       break;
     }
     if (usernumber.length() != 4) {
@@ -42,4 +43,26 @@ void CLUI::takeUserGuess() {
     takeUserGuess();
   }
   std::cout << "Bye-bye!!!" << std::endl;
+}
+
+void CLUI::writeWinToLogFile() {
+  std::string text;
+  std::ifstream read_my_file;
+  read_my_file.open("statistics.txt");
+  if (read_my_file.is_open()) {
+    std::string line;
+    std::stringstream buffer;
+    buffer << read_my_file.rdbuf();
+    line = buffer.str();
+    text = line;
+  }
+  read_my_file.close();
+  std::ofstream my_file;
+  my_file.open("statistics.txt");
+  text = text + "Guessed number: " + gamelogic->getUserNumber() + ", " + "Number of guesses for win: " + std::to_string(guesscounter) + ".";
+  if (my_file.is_open()) {
+    my_file << text << std::endl;
+  }
+  my_file.close();
+  return;
 }
