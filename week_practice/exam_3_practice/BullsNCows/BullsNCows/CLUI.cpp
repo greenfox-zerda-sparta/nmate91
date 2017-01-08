@@ -39,6 +39,8 @@ void CLUI::takeUserGuess() {
   std::cout << "Do you want to play again? Type yes or no." << std::endl;
   std::cin >> text;
   if (text == "yes") {
+    delete gamelogic;
+    gamelogic = new GameLogic;
     guesscounter = 0;
     takeUserGuess();
   }
