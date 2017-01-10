@@ -21,5 +21,7 @@ public:
   void placeShips(int);
   int generateX(int);
   int generateY(int);
+  bool isRowFree(int, int, int);
+  bool isColFree(int, int, int);
 };
 

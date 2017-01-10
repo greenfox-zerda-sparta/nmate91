@@ -22,43 +22,25 @@ void Board::setCoordinateToShip(unsigned int i, unsigned int j, int x) {
 }
 
 void Board::placeShips(int ship) {
-  srand(time(NULL));
   int x, y;
-  bool invalid_coordinate = true;
-  while (invalid_coordinate) {
+  while (1) {
     x = generateX(ship);
     y = generateY(ship);
-    int length = x + ship;
-    for (int i = x; i < length; i++) {
-      if (board_vector[x][y] != 0) {
-        invalid_coordinate = true;
-        break;
+    if (isRowFree(x, y, ship)) {
+      int length = x + ship;
+      while (x < length) {
+        setCoordinateToShip(x, y, ship);
+        x++;
       }
-      invalid_coordinate = false;
+      break;
     }
-    length = y + ship;
-    for (int i = y; i < length; i++) {
-      if (board_vector[x][y] != 0) {
-        invalid_coordinate = true;
-        break;
+    if (isColFree(x, y, ship)) {
+      int length = y + ship;
+      while (y < length) {
+        setCoordinateToShip(x, y, ship);
+        y++;
       }
-      invalid_coordinate = false;
-    }
-  }
-  board_vector[x][y];
-  bool decide = rand() % 2;
-  if (decide) {
-    int length = y + ship;
-    while (y < length) {
-      setCoordinateToShip(x, y, ship);
-      y++;
-    }
-  }
-  else {
-    int length = x + ship;
-    while (x < length) {
-      setCoordinateToShip(x, y, ship);
-      x++;
+      break;
     }
   }
 }
@@ -66,7 +48,7 @@ void Board::placeShips(int ship) {
 int Board::generateX(int ship) {
   int x = rand() % 10 - ship;
   if (x < 0) {
-    x = 0;
+    return generateX(ship);
   }
   return x;
 }
@@ -74,7 +56,27 @@ int Board::generateX(int ship) {
 int Board::generateY(int ship) {
   int y = rand() % 10 - ship;
   if (y < 0) {
-    y = 0;
+    return generateY(ship);
   }
   return y;
+}
+
+bool Board::isRowFree(int x, int y, int ship) {
+  int length = x + ship;
+  for (int i = x; i <= length; i++) {
+    if (board_vector[i][y] != 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool Board::isColFree(int x, int y, int ship) {
+  int length = y + ship;
+  for (int i = y; i <= length; i++) {
+    if (board_vector[x][i] != 0) {
+      return false;
+    }
+    return true;
+  }
 }

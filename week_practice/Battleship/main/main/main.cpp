@@ -34,6 +34,7 @@ TEST_CASE("Is i, j coordinate setted to 1") {
 }
 
 TEST_CASE("Put down ship") {
+  srand(time(NULL));
   Board board;
   board.placeShips(CARRIER);
   board.placeShips(BATTLESHIP);
