@@ -29,8 +29,24 @@ TEST_CASE("Is vector coordinate 0") {
 
 TEST_CASE("Is i, j coordinate setted to 1") {
   Board board;
-  board.setCoordinateToShip(5, 5);
+  board.setCoordinateToShip(5, 5, 1);
   REQUIRE(board.getVectorElementByCoordinate(5, 5) == 1);
+}
+
+TEST_CASE("Put down ship") {
+  Board board;
+  board.placeShips(CARRIER);
+  board.placeShips(BATTLESHIP);
+  board.placeShips(CRUISER);
+  board.placeShips(SUBMARINE);
+  board.placeShips(DESTROYER);
+  REQUIRE(board.getVector().size());
+  for (int i = 0; i < board.getVector().size(); i++) {
+    for (int j = 0; j < board.getVector()[i].size(); j++) {
+      std::cout << board.getVectorElementByCoordinate(i, j) << " ";
+    }
+    std::cout << std::endl;
+  } 
 }
 
 #endif // CATCH_CONFIG_MAIN
