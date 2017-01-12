@@ -29,7 +29,6 @@ int main(int argc, char *argv[]) {
       SDLNet_TCP_AddSocket(set, clientvector[client_count]);
       SDLNet_TCP_Send(client, integer_data, 100);
       client_count++;
-      std::cout << "client connected" << client_count << std::endl;
     }
     if (clientvector.size() == 2) {
       std::cout << "Connection estabilished." << std::endl;
