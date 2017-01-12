@@ -32,19 +32,17 @@ int main(int argc, char *argv[]) {
     }
     if (clientvector.size() == 2) {
       std::cout << "Connection estabilished." << std::endl;
-      while (client_data[0] != 'q') {
+      while (clientvector.size() == 2) {
         activeSockets = SDLNet_CheckSockets(set, 10);
         if (activeSockets != 0) {
           gotServerResponse = SDLNet_SocketReady(clientvector[1]);
           if (gotServerResponse != 0) {
             SDLNet_TCP_Recv(clientvector[1], client_data, 100);
-            std::cout << client_data[0] << ", " << client_data[1] << std::endl;
             SDLNet_TCP_Send(clientvector[0], client_data, 100);
           }
           gotServerResponse = SDLNet_SocketReady(clientvector[0]);
           if (gotServerResponse != 0) {
             SDLNet_TCP_Recv(clientvector[0], client_data, 100);
-            std::cout << client_data[0] << ", " << client_data[1] << std::endl;
             SDLNet_TCP_Send(clientvector[1], client_data, 100);
           }
         }
