@@ -22,7 +22,7 @@ namespace ExamBasics
 		public double watering
 		{
 			get { return current_water_amount; }
-			set { current_water_amount += value * effectiveness; }
+			set { current_water_amount += (value * effectiveness); }
 		}
 		public string getColor()
 		{

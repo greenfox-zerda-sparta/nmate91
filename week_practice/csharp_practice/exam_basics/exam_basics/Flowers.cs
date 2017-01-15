@@ -13,7 +13,7 @@ namespace ExamBasics
 			type = "flower";
 			color = _color;
 			current_water_amount = 0;
-			min_water_amount = 10;
+			min_water_amount = 5;
 			effectiveness = 0.75;
 		}
 	}

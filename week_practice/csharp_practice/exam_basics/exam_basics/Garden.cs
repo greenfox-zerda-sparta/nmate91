@@ -67,11 +67,25 @@ namespace ExamBasics
 				{
 					Console.WriteLine("Watering with " + value.ToString());
 				}
+				int counter = 0;
 				foreach (Plants element in plants)
 				{
-					if(element.needsWater())
+					if (element.needsWater())
 					{
-						element.watering = value;
+						counter++;
+					}
+				}
+				foreach (Plants element in plants)
+				{
+					if (element.needsWater())
+					{
+						element.watering = value/counter;
+					}
+				}
+				foreach (Plants element in plants)
+				{
+					if (element.needsWater())
+					{
 						Console.WriteLine(element.getColor() + " " + element.getType() + " needs water.");
 					}
 					else

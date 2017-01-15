@@ -13,7 +13,7 @@ namespace ExamBasics
 			type = "tree";
 			color = _color;
 			current_water_amount = 0;
-			min_water_amount = 5;
+			min_water_amount = 10;
 			effectiveness = 0.4;
 		}
 	}
