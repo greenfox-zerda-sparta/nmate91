@@ -11,8 +11,7 @@ namespace ExamBasics
 		static void Main(string[] args)
 		{
 			Garden garden = new Garden();
-			garden.wateringTree = 100;
-			garden.wateringFlower = 100;
+			garden.wateringEverything = 100;
 		}
 	}
 }

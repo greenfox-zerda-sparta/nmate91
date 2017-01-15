@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ExamBasics
 {
-	class Flowers : Plants
+	public class Flower : Plants
 	{
-		public Flowers()
+		public Flower(string _color)
 		{
+			type = "flower";
+			color = _color;
 			current_water_amount = 9;
 			min_water_amount = 10;
 			effectiveness = 0.75;

@@ -8,9 +8,11 @@ namespace ExamBasics
 {
 	public class Tree : Plants
 	{
-		public Tree()
+		public Tree(string _color)
 		{
-			current_water_amount = 20;
+			type = "tree";
+			color = _color;
+			current_water_amount = 4;
 			min_water_amount = 5;
 			effectiveness = 0.4;
 		}
