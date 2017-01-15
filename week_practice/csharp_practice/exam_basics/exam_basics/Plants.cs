@@ -15,7 +15,6 @@ namespace ExamBasics
 		protected double effectiveness = 0;
 
 		public Plants() { }
-
 		public bool needsWater()
 		{
 			return current_water_amount <= min_water_amount;

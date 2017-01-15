@@ -28,7 +28,6 @@ namespace ExamBasics
 			blueflower = new Flower("blue");
 			plants.Add(blueflower);
 		}
-
 		public double wateringTree
 		{
 			set
@@ -45,7 +44,6 @@ namespace ExamBasics
 			}
 
 		}
-
 		public double wateringFlower
 		{
 			set
@@ -61,23 +59,24 @@ namespace ExamBasics
 				}
 			}
 		}
-
 		public double wateringEverything
 		{
 			set
 			{
+				Console.WriteLine("Watering with " + value.ToString());
 				foreach (Plants element in plants)
 				{
+					element.watering = value;
 					if(element.needsWater())
 					{
-						element.watering = value;
-						Console.WriteLine("Watering " + element.getColor() + " " + element.getType() +  " with " + value.ToString());
+						Console.WriteLine(element.getColor() + " " + element.getType() + " needs water.");
 					}
 					else
 					{
-						Console.WriteLine("Tree doesnt need water.");
+						Console.WriteLine(element.getColor() + " " + element.getType() + " doesnt need water.");
 					}
 				}
+				Console.WriteLine();
 			}
 		}
 	}
