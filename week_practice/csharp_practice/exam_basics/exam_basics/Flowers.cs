@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ExamBasics
 {
-	class Program
+	class Flowers : Plants
 	{
-		static void Main(string[] args)
+		public Flowers()
 		{
-			Garden garden = new Garden();
-			garden.wateringTree = 100;
-			garden.wateringFlower = 100;
+			current_water_amount = 9;
+			min_water_amount = 10;
+			effectiveness = 0.75;
 		}
 	}
 }

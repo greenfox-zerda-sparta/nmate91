@@ -4,25 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace exam_basics
+namespace ExamBasics
 {
 	public abstract class Plants
 	{
-		private double current_water_amount;
-		private const double max_water_amount = 70;
-		private bool needs_water;
+		protected double current_water_amount = 0;
+		protected double min_water_amount = 0;
+		protected double effectiveness = 0;
 
-		public Plants()
-		{
-			current_water_amount = 70;
-		}
-
+		public Plants() { }
 		public bool needsWater
 		{
-			get { return current_water_amount < 6; }
-			set { needs_water = value; }
+			get { return current_water_amount <= min_water_amount; }
 		}
-
-		public virtual double water { get; set; }
+		public double water
+		{
+			get { return current_water_amount; }
+			set { current_water_amount += value * effectiveness; }
+		}
 	}
 }

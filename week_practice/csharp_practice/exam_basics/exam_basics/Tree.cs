@@ -4,23 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace exam_basics
+namespace ExamBasics
 {
 	public class Tree : Plants
 	{
-		private double current_water_amount;
-		private const double max_water_amount = 40;
-		private bool needs_water;
-
 		public Tree()
 		{
-			current_water_amount = 70;
-		}
-
-		public override double water
-		{
-			get { return current_water_amount; }
-			set { current_water_amount += value * 0.4; }
+			current_water_amount = 20;
+			min_water_amount = 5;
+			effectiveness = 0.4;
 		}
 	}
 }
