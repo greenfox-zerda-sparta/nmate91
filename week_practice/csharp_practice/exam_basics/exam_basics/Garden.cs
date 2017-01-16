@@ -1,99 +1,84 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExamBasics
 {
 	public class Garden
 	{
 		private Tree yellowtree;
-		private Tree redtree;
+		private Tree orange;
 		private Flower purpleflower;
 		private Flower blueflower;
+		private int waterneedcounter;
 		private List<Plants> plants = new List<Plants>();  
 
 		public Garden()
 		{
-			yellowtree = new Tree("yellow");
+			waterneedcounter = 0;
+			yellowtree = new Tree("Yellow");
 			plants.Add(yellowtree);
 
-			redtree = new Tree("red");
-			plants.Add(redtree);
+			orange = new Tree("Orange");
+			plants.Add(orange);
 
-			purpleflower = new Flower("purple");
+			purpleflower = new Flower("Purple");
 			plants.Add(purpleflower);
 
-			blueflower = new Flower("blue");
+			blueflower = new Flower("Blue");
 			plants.Add(blueflower);
 		}
-		public double wateringTree
+		public void CountPlantsThatNeedWater()
 		{
-			set
+			waterneedcounter = 0;
+			foreach (Plants element in plants)
 			{
-				if(yellowtree.needsWater())
+				if (element.NeedsWater())
 				{
-					yellowtree.watering = value;
-					Console.WriteLine("Watering " + yellowtree.getColor() +  " tree with " + value.ToString());
-				}
-				else
-				{
-					Console.WriteLine("Tree doesnt need water.");
+					waterneedcounter++;
 				}
 			}
-
+			return;
 		}
-		public double wateringFlower
+		public void WaterPlantsThatNeedWater(double wateramount)
 		{
-			set
+			foreach (Plants element in plants)
 			{
-				if(purpleflower.needsWater())
+				if (element.NeedsWater())
 				{
-					purpleflower.watering = value;
-					Console.WriteLine("Watering " + purpleflower.getColor() + " flower with " + value.ToString());
-				}
-				else
-				{
-					Console.WriteLine("Tree doesnt need water.");
+					element.Watering(wateramount / waterneedcounter);
 				}
 			}
 		}
-		public double wateringEverything
+		public void PrintNeedsToConsole()
 		{
-			set
+			foreach (Plants element in plants)
+				{
+				if (element.NeedsWater())
+				{
+					Console.WriteLine(element.GetColor() + " " + element.GetPlantType() + " needs water.");
+				}
+				else
+				{
+					Console.WriteLine(element.GetColor() + " " + element.GetPlantType() + " doesnt need water.");
+				}
+			}
+			Console.WriteLine();
+		}
+		public void WaterThGarden(double wateramount)
+		{
+			try
 			{
-				if (value > 0)
+				if (wateramount > 0)
 				{
-					Console.WriteLine("Watering with " + value.ToString());
+					Console.WriteLine("Watering with " + wateramount.ToString());
 				}
-				int counter = 0;
-				foreach (Plants element in plants)
-				{
-					if (element.needsWater())
-					{
-						counter++;
-					}
-				}
-				foreach (Plants element in plants)
-				{
-					if (element.needsWater())
-					{
-						element.watering = value/counter;
-					}
-				}
-				foreach (Plants element in plants)
-				{
-					if (element.needsWater())
-					{
-						Console.WriteLine(element.getColor() + " " + element.getType() + " needs water.");
-					}
-					else
-					{
-						Console.WriteLine(element.getColor() + " " + element.getType() + " doesnt need water.");
-					}
-				}
-				Console.WriteLine();
+				CountPlantsThatNeedWater();
+				WaterPlantsThatNeedWater(wateramount);
+				PrintNeedsToConsole();
+			}
+			catch (DivideByZeroException)
+			{
+				Console.WriteLine("You can't water zero plants...");
 			}
 		}
 	}

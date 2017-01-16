@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExamBasics
+﻿namespace ExamBasics
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
 			Garden garden = new Garden();
-			garden.wateringEverything = 0;
-			garden.wateringEverything = 40;
-			garden.wateringEverything = 70;
+			garden.WaterThGarden(0);
+			garden.WaterThGarden(40);
+			garden.WaterThGarden(70);
 		}
 	}
 }
